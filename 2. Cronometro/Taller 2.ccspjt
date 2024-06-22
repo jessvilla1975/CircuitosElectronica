@@ -1,0 +1,58 @@
+[PROJECT]
+Target=Taller 2.hex
+Processor_Text=PIC18F4550
+CCSVersion=5.059
+Compiler=PCH
+[Target Data]
+FileList=Taller 2.c
+[Taller 2.c]
+Type=4
+[mru-list]
+1=Taller 2.c
+
+[defines]
+buildcount=5
+
+[ProjectLog]
+Days=4
+D1=22-07-2019
+D1_L=3
+D1_L1=[42503]Project Closed.
+D1_L2=[42617]Project Opened.
+D1_L3=[48754]Project Closed.
+D2=23-07-2019
+D2_L=2
+D2_L1=[51940]Project Opened.
+D2_L2=[51946]Project Closed.
+D3=01-08-2019
+D3_L=12
+D3_L1=[48413]Project Opened.
+D3_L2=[48610]Started Editing.
+D3_L3=[48718]Stopped Editing.
+TotalEdit=5
+TotalDebug=0
+D3_E=5
+D3_D=0
+D3_L4=[48718]Project Closed.
+D3_L5=[49765]Project Opened.
+D3_L6=[49862]Started Editing.
+D3_L7=[49978]Stopped Editing.
+D3_L8=[49978]Project Closed.
+D3_L9=[58959]Project Opened.
+D3_L10=[58985]Started Editing.
+D3_L11=[59023]Stopped Editing.
+D3_L12=[59023]Project Closed.
+D4=17-05-2021
+D4_L=2
+D4_L1=[63988]Project Opened.
+D4_L2=[64000]Project Closed.
+
+[Opened Files]
+1=Taller 2.c
+t1=90
+2=..\..\..\Archivos\Display\Taller1_2.c
+t2=9
+Count=1
+[Units]
+Count=1
+1=Taller 2 (main)

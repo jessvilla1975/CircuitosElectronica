@@ -1,0 +1,313 @@
+#include <18f4550.h>
+#USE DELAY (CLOCK=4000000)
+//#BYTE PORTB = 0x06
+
+#use fast_io(C)
+
+void main(){
+
+   int numeros [11] = {0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,0xf8,0x80,0x98, 0xff};
+                      //0    1    2    3    4    5    6    7    8    9   apagados valores en hexadecimal
+   int s7 =0x40 ,s6 = 0x40, s5 = 0x40, mov = 0;
+                      
+   //set_tris_c(0xf7);
+   
+   int n0 = 0 , n1 = 0 , n2 = 0 , n5 = 0 , n6 = 0 , n7 = 0 ;//-----------------> permite el cambio de cada display 
+   int a0, a1, a2;                                          //-----------------> intermitencia del led cuando se iguala con la referencia
+   int contador = 0, c2 = 0;                                //-----------------> contador => lleva la cuenta para realizar el cambio de cada numero
+                                                            //-----------------> c2 => cuando se apagan los leds para parpadear y cuando se encienden.
+    
+   const int tiempo=2;                                      //-----------------> velocidad de refresco del display en ms;
+   int n=0;                                                 //-----------------> salida de cada bucle infinito
+      
+  /*---while para setear los valores ---*/
+   while(n==0){
+      
+      if (mov !=0)
+         s5 = numeros[n5];
+      if (mov !=2)   
+         s7 = numeros[n7];
+      if (mov !=1)
+         s6 = numeros[n6];
+      
+      /*----desplzar izquierda---*/
+      if (!(input (PIN_C2))){
+         
+         delay_ms(100);         
+         mov++;
+         
+         if(mov == 0){
+            
+            s5 -= 0x80;
+         }else{
+         
+            if(mov == 1){
+            
+               s6 -= 0x80;
+            }else {
+               
+               if(mov == 2){
+               
+                  s7 -= 0x80;
+               }else{
+                  
+                  mov--;
+               }            
+            }
+         }         
+      }
+      
+   /*----desplazar derecha----*/
+      if (!(input (PIN_C4))){
+         
+         delay_ms(100);         
+         mov--;
+         
+         if(mov == 0){
+            
+            s5 -= 0x80;
+         }else{
+         
+            if(mov == 1){
+            
+               s6 -= 0x80;
+            }else {
+               
+               if(mov == 2){
+               
+                  s7 -= 0x80;
+               }else{
+                  
+                  mov++;
+               }            
+            }
+         }         
+      }
+      
+      /*----decremento-----------*/
+      if (!(input (PIN_C1))){
+         
+         delay_ms(100);        
+                
+         if(mov == 0){            
+            
+            if (n5 != 0)
+               n5--;                          
+                        
+           s5 = numeros[n5] - 0x80; 
+            
+         }else{
+         
+            if(mov == 1){
+               
+               if(n6!=0)
+                  n6 --;               
+               s6 = numeros[n6] - 0x80;
+               
+            }else {
+               
+               if(mov == 2){
+                  
+                  if (n7 != 0)
+                     n7--;                     
+                  s7 = numeros[n7] - 0x80;
+               }
+            
+            }
+         }         
+      }
+      
+      /*-----incremento-----------*/
+      if (!(input (PIN_C0))){
+         
+         delay_ms(100);         
+                 
+         if(mov == 0){
+            
+            if (n5 !=9)
+               n5++;                        
+           s5 = numeros[n5] - 0x80; 
+            
+         }else{
+         
+            if(mov == 1){               
+               
+               if (n6 != 9)
+                  n6++;               
+               
+               s6 = numeros[n6] - 0x80;
+               
+            }else {
+               
+               if(mov == 2){
+                 
+                 if (n7 !=9)
+                     n7++;                     
+                  s7 = numeros[n7] - 0x80;
+               }
+            
+            }
+         }         
+      }
+      
+      /*-----terminar iteraccion--*/
+      if (!(input (PIN_c5)))
+         n=1;
+      
+      //---- display 7-------//
+      OUTPUT_D(0x7f);
+      OUTPUT_B(s7);
+      delay_ms(tiempo);
+   
+      //---- display 6-------//
+      OUTPUT_D(0xbf);
+      OUTPUT_B(s6);
+      delay_ms(tiempo); 
+      
+      //---- display 5-------//
+      OUTPUT_D(0xdf);
+      OUTPUT_B(s5);
+      delay_ms(tiempo);
+   
+   }
+   
+      
+   while(n==1){
+      
+      contador++;
+      
+      if(contador == 20){                             //-----------------------> el establece el tiempo que se demora en contar cada display
+      
+         contador=0;                                  //-----------------------> reinicia el contador 
+         
+         if ((n0 >= n5)&& (n1 >= n6) && (n2 >= n7 )){ //-----------------------> evaluamos si alcanzamos el valor de referencia
+            
+            c2++;                                     //-----------------------> alternamos entre encendido y apagado
+            
+            if (c2 % 2 == 0){
+               
+               n0 = a0;                               //-----------------------> restablecemos el numero original que lleva el contador
+               n1 = a1;                               //-----------------------> restablecemos el numero original que lleva el contador
+               n2 = a2;                               //-----------------------> restablecemos el numero original que lleva el contador
+               
+               if(n0 >= 9){
+                  if(n1 >= 9){               
+                     if(n2 >= 9){
+                     
+                        n0 = 0;                       //-----------------------> evitamos que se desborde el coteo del led (no superar 9)
+                        n1 = 0;                       //-----------------------> evitamos que se desborde el coteo del led (no superar 9)
+                        n2 = 0;                       //-----------------------> evitamos que se desborde el coteo del led (no superar 9)
+                        
+                     }else{
+                        
+                        n2++;                         //-----------------------> pasamos al siguiente numero
+                        n1 = 0;                       //-----------------------> evitamos que se desborde el coteo del led (no superar 9)
+                        n0 = 0;                       //-----------------------> evitamos que se desborde el coteo del led (no superar 9)                 
+                     }
+                     
+                  }else{
+                     
+                     n0 = 0;
+                     n1++;               
+                  }
+                  
+               }else{
+               
+                  n0++;
+            
+               }
+               
+            }else{
+               
+               a0 = n0;                               //-----------------------> guardamos el numero original que lleva el contador
+               a1 = n1;                               //-----------------------> guardamos el numero original que lleva el contador
+               a2 = n2;                               //-----------------------> guardamos el numero original que lleva el contador
+               
+               n0 = 10;                               //-----------------------> apagamos los leds que cuentan
+               n1 = 10;;                               //-----------------------> apagamos los leds que cuentan
+               n2 = 10;;                               //-----------------------> apagamos los leds que cuentan
+            }
+         }else{
+         
+            if(n0 >= 9){         
+               if(n1 >= 9){               
+                  if(n2 >= 9){
+                  
+                     n0 = 0;
+                     n1 = 0; 
+                     n2 = 0;
+                     
+                  }else{
+                     
+                     n2++;
+                     n1 = 0;
+                     n0 = 0;                  
+                  }
+                  
+               }else{
+                  
+                  n0 = 0;
+                  n1++;               
+               }
+               
+            }else{
+            
+               n0++;
+         
+            }   
+         
+         }
+      
+      }
+      
+      
+      
+      //---- display 7-------//
+      OUTPUT_D(0x7f);
+      OUTPUT_B(numeros[n7]);
+      delay_ms(tiempo );
+   
+      //---- display 6-------//
+      OUTPUT_D(0xbf);
+      OUTPUT_B(numeros[n6]);
+      delay_ms(tiempo); 
+      
+      //---- display 5-------//
+      OUTPUT_D(0xdf);
+      OUTPUT_B(numeros[n5]);
+      delay_ms(tiempo);      
+      
+      //---- display 2-------//
+      OUTPUT_D(0xfb);
+      OUTPUT_B(numeros[n2]);
+      delay_ms(tiempo);
+   
+      //---- display 1-------//
+      OUTPUT_D(0xfc);
+      OUTPUT_B(numeros[n1]);
+      delay_ms(tiempo); 
+      
+      //---- display 0-------//
+      OUTPUT_D(0xfE);
+      OUTPUT_B(numeros[n0]);
+      delay_ms(tiempo);
+      
+   }
+   
+      
+}
+
+/*
+ 7   6   5   4        3   2   1   0
+ _   _   _   _        _   _   _   _
+|_| |_| |_| |_|      |_| |_| |_| |_|
+|_| |_| |_| |_|      |_| |_| |_| |_|
+ 7   b   d  null     null b   c   f  --> codigo para encender cada led en HEX
+---------------      ---------------
+      
+      a
+      _
+    f|_|b   medio g
+    e|_|c
+      d
+*/

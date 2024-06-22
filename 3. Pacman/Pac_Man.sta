@@ -1,0 +1,55 @@
+
+ROM used:   1368/32768 (4%)
+            1368/32768 (4%) including unused fragments
+
+            1.2 Average locations per line
+            8.2 Average locations per statement
+
+RAM used:   8/2048 (0%) at main() level
+            20/2048 (1%) worst case
+
+Stack used: 4 worst case (4 in main + 0 for interrupts)
+Stack size: 31
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  146   104  62  Pac_Man.c
+  837     0   0  ..\..\..\Program Files (x86)\PICC\Devices\18F4550.H
+  181    63  38  Mi_LCD.c
+----- -----
+ 1164   167 Total
+
+Page ROM  %  RAM    Vol Diff  Functions:
+---- --- --- ---    --- ----  ----------
+0     40   1    1             @delay_ms1
+0     20   1    0             @const631
+0     56   2    3    463  4.3  lcd_read_byte
+0     24   1    1    134  2.2  lcd_send_nibble
+0     54   2    3    317  4.3  lcd_send_byte
+0     78   3    2    422  4.7  lcd_init
+0     34   1    4    186  5.5  lcd_gotoxy
+0     66   2    1    272  4.1  lcd_putc
+0    948  35    2   5135  5.4  main
+0     10   0    0             @const662
+0     34   1    2             @PSTRINGC_651
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               7
+    Statements              167
+    Comments                270
+    Volume (V)              8707
+    Difficulty (D)          30.9
+    Effort to implement (E) 268701
+    Time to implement (T)   4 hours, 9 minutes
+    Est Delivered Bugs (B)  1
+    Cyclomatic Complexity   9
+    Maintainability (MI)    72
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-07FFE  1364  31400  
+
+
+

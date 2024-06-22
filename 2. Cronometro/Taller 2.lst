@@ -1,0 +1,806 @@
+CCS PCH C Compiler, Version 5.059, 5967               01-ago.-19 13:52
+
+               Filename:   C:\Users\Acer\Desktop\Universidad\Microprocesadores1\Taller2\Taller 2.lst
+
+               ROM used:   960 bytes (3%)
+                           Largest free fragment is 31808
+               RAM used:   32 (2%) at main() level
+                           32 (2%) worst case
+               Stack used: 1 locations
+               Stack size: 31
+
+*
+0000:  GOTO   002C
+.................... #include <18f4550.h> 
+.................... //////////// Standard Header file for the PIC18F4550 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC18F4550 
+....................  
+.................... #list 
+....................  
+.................... #USE DELAY (CLOCK=4000000) 
+0004:  CLRF   FEA
+0006:  MOVLW  20
+0008:  MOVWF  FE9
+000A:  MOVF   FEF,W
+000C:  BZ    002A
+000E:  MOVLW  01
+0010:  MOVWF  01
+0012:  CLRF   00
+0014:  DECFSZ 00,F
+0016:  BRA    0014
+0018:  DECFSZ 01,F
+001A:  BRA    0012
+001C:  MOVLW  4A
+001E:  MOVWF  00
+0020:  DECFSZ 00,F
+0022:  BRA    0020
+0024:  BRA    0026
+0026:  DECFSZ FEF,F
+0028:  BRA    000E
+002A:  RETURN 0
+.................... //#BYTE PORTB = 0x06 
+....................  
+.................... #use fast_io(C) 
+....................  
+.................... void main(){ 
+002C:  CLRF   FF8
+002E:  BCF    FD0.7
+0030:  MOVF   FC1,W
+0032:  ANDLW  C0
+0034:  IORLW  0F
+0036:  MOVWF  FC1
+0038:  MOVLW  07
+003A:  MOVWF  FB4
+*
+0066:  MOVLW  40
+0068:  MOVWF  10
+006A:  MOVWF  11
+006C:  MOVWF  12
+006E:  CLRF   13
+0070:  CLRF   14
+0072:  CLRF   15
+0074:  CLRF   16
+0076:  CLRF   17
+0078:  CLRF   18
+007A:  CLRF   19
+007C:  CLRF   1D
+007E:  CLRF   1E
+0080:  CLRF   1F
+....................  
+....................    int numeros [11] = {0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,0xf8,0x80,0x98, 0xff}; 
+*
+003C:  MOVLW  C0
+003E:  MOVWF  05
+0040:  MOVLW  F9
+0042:  MOVWF  06
+0044:  MOVLW  A4
+0046:  MOVWF  07
+0048:  MOVLW  B0
+004A:  MOVWF  08
+004C:  MOVLW  99
+004E:  MOVWF  09
+0050:  MOVLW  92
+0052:  MOVWF  0A
+0054:  MOVLW  82
+0056:  MOVWF  0B
+0058:  MOVLW  F8
+005A:  MOVWF  0C
+005C:  MOVLW  80
+005E:  MOVWF  0D
+0060:  MOVLW  98
+0062:  MOVWF  0E
+0064:  SETF   0F
+....................                       //0    1    2    3    4    5    6    7    8    9   apagados valores en hexadecimal 
+....................    int s7 =0x40 ,s6 = 0x40, s5 = 0x40, mov = 0; 
+....................                        
+....................    //set_tris_c(0xf7); 
+....................     
+....................    int n0 = 0 , n1 = 0 , n2 = 0 , n5 = 0 , n6 = 0 , n7 = 0 ;//-----------------> permite el cambio de cada display  
+....................    int a0, a1, a2;                                          //-----------------> intermitencia del led cuando se iguala con la referencia 
+....................    int contador = 0, c2 = 0;                                //-----------------> contador => lleva la cuenta para realizar el cambio de cada numero 
+....................                                                             //-----------------> c2 => cuando se apagan los leds para parpadear y cuando se encienden. 
+....................      
+....................    const int tiempo=2;                                      //-----------------> velocidad de refresco del display en ms; 
+....................    int n=0;                                                 //-----------------> salida de cada bucle infinito 
+....................        
+....................   /*---while para setear los valores ---*/ 
+....................    while(n==0){ 
+*
+0082:  MOVF   1F,F
+0084:  BTFSS  FD8.2
+0086:  BRA    0244
+....................        
+....................       if (mov !=0) 
+0088:  MOVF   13,F
+008A:  BZ    009E
+....................          s5 = numeros[n5]; 
+008C:  CLRF   03
+008E:  MOVF   17,W
+0090:  ADDLW  05
+0092:  MOVWF  FE9
+0094:  MOVLW  00
+0096:  ADDWFC 03,W
+0098:  MOVWF  FEA
+009A:  MOVFF  FEF,12
+....................       if (mov !=2)    
+009E:  MOVF   13,W
+00A0:  SUBLW  02
+00A2:  BZ    00B6
+....................          s7 = numeros[n7]; 
+00A4:  CLRF   03
+00A6:  MOVF   19,W
+00A8:  ADDLW  05
+00AA:  MOVWF  FE9
+00AC:  MOVLW  00
+00AE:  ADDWFC 03,W
+00B0:  MOVWF  FEA
+00B2:  MOVFF  FEF,10
+....................       if (mov !=1) 
+00B6:  DECFSZ 13,W
+00B8:  BRA    00BC
+00BA:  BRA    00CE
+....................          s6 = numeros[n6]; 
+00BC:  CLRF   03
+00BE:  MOVF   18,W
+00C0:  ADDLW  05
+00C2:  MOVWF  FE9
+00C4:  MOVLW  00
+00C6:  ADDWFC 03,W
+00C8:  MOVWF  FEA
+00CA:  MOVFF  FEF,11
+....................        
+....................       /*----desplzar izquierda---*/ 
+....................       if (!(input (PIN_C2))){ 
+00CE:  BTFSC  F82.2
+00D0:  BRA    00FC
+....................           
+....................          delay_ms(100);          
+00D2:  MOVLW  64
+00D4:  MOVWF  20
+00D6:  RCALL  0004
+....................          mov++; 
+00D8:  INCF   13,F
+....................           
+....................          if(mov == 0){ 
+00DA:  MOVF   13,F
+00DC:  BNZ   00E4
+....................              
+....................             s5 -= 0x80; 
+00DE:  MOVLW  80
+00E0:  SUBWF  12,F
+....................          }else{ 
+00E2:  BRA    00FC
+....................           
+....................             if(mov == 1){ 
+00E4:  DECFSZ 13,W
+00E6:  BRA    00EE
+....................              
+....................                s6 -= 0x80; 
+00E8:  MOVLW  80
+00EA:  SUBWF  11,F
+....................             }else { 
+00EC:  BRA    00FC
+....................                 
+....................                if(mov == 2){ 
+00EE:  MOVF   13,W
+00F0:  SUBLW  02
+00F2:  BNZ   00FA
+....................                 
+....................                   s7 -= 0x80; 
+00F4:  MOVLW  80
+00F6:  SUBWF  10,F
+....................                }else{ 
+00F8:  BRA    00FC
+....................                    
+....................                   mov--; 
+00FA:  DECF   13,F
+....................                }             
+....................             } 
+....................          }          
+....................       } 
+....................        
+....................    /*----desplazar derecha----*/ 
+....................       if (!(input (PIN_C4))){ 
+00FC:  BTFSC  F82.4
+00FE:  BRA    012A
+....................           
+....................          delay_ms(100);          
+0100:  MOVLW  64
+0102:  MOVWF  20
+0104:  RCALL  0004
+....................          mov--; 
+0106:  DECF   13,F
+....................           
+....................          if(mov == 0){ 
+0108:  MOVF   13,F
+010A:  BNZ   0112
+....................              
+....................             s5 -= 0x80; 
+010C:  MOVLW  80
+010E:  SUBWF  12,F
+....................          }else{ 
+0110:  BRA    012A
+....................           
+....................             if(mov == 1){ 
+0112:  DECFSZ 13,W
+0114:  BRA    011C
+....................              
+....................                s6 -= 0x80; 
+0116:  MOVLW  80
+0118:  SUBWF  11,F
+....................             }else { 
+011A:  BRA    012A
+....................                 
+....................                if(mov == 2){ 
+011C:  MOVF   13,W
+011E:  SUBLW  02
+0120:  BNZ   0128
+....................                 
+....................                   s7 -= 0x80; 
+0122:  MOVLW  80
+0124:  SUBWF  10,F
+....................                }else{ 
+0126:  BRA    012A
+....................                    
+....................                   mov++; 
+0128:  INCF   13,F
+....................                }             
+....................             } 
+....................          }          
+....................       } 
+....................        
+....................       /*----decremento-----------*/ 
+....................       if (!(input (PIN_C1))){ 
+012A:  BTFSC  F82.1
+012C:  BRA    0194
+....................           
+....................          delay_ms(100);         
+012E:  MOVLW  64
+0130:  MOVWF  20
+0132:  RCALL  0004
+....................                  
+....................          if(mov == 0){             
+0134:  MOVF   13,F
+0136:  BNZ   0154
+....................              
+....................             if (n5 != 0) 
+0138:  MOVF   17,F
+013A:  BZ    013E
+....................                n5--;                           
+013C:  DECF   17,F
+....................                          
+....................            s5 = numeros[n5] - 0x80;  
+013E:  CLRF   03
+0140:  MOVF   17,W
+0142:  ADDLW  05
+0144:  MOVWF  FE9
+0146:  MOVLW  00
+0148:  ADDWFC 03,W
+014A:  MOVWF  FEA
+014C:  MOVLW  80
+014E:  SUBWF  FEF,W
+0150:  MOVWF  12
+....................              
+....................          }else{ 
+0152:  BRA    0194
+....................           
+....................             if(mov == 1){ 
+0154:  DECFSZ 13,W
+0156:  BRA    0174
+....................                 
+....................                if(n6!=0) 
+0158:  MOVF   18,F
+015A:  BZ    015E
+....................                   n6 --;                
+015C:  DECF   18,F
+....................                s6 = numeros[n6] - 0x80; 
+015E:  CLRF   03
+0160:  MOVF   18,W
+0162:  ADDLW  05
+0164:  MOVWF  FE9
+0166:  MOVLW  00
+0168:  ADDWFC 03,W
+016A:  MOVWF  FEA
+016C:  MOVLW  80
+016E:  SUBWF  FEF,W
+0170:  MOVWF  11
+....................                 
+....................             }else { 
+0172:  BRA    0194
+....................                 
+....................                if(mov == 2){ 
+0174:  MOVF   13,W
+0176:  SUBLW  02
+0178:  BNZ   0194
+....................                    
+....................                   if (n7 != 0) 
+017A:  MOVF   19,F
+017C:  BZ    0180
+....................                      n7--;                      
+017E:  DECF   19,F
+....................                   s7 = numeros[n7] - 0x80; 
+0180:  CLRF   03
+0182:  MOVF   19,W
+0184:  ADDLW  05
+0186:  MOVWF  FE9
+0188:  MOVLW  00
+018A:  ADDWFC 03,W
+018C:  MOVWF  FEA
+018E:  MOVLW  80
+0190:  SUBWF  FEF,W
+0192:  MOVWF  10
+....................                } 
+....................              
+....................             } 
+....................          }          
+....................       } 
+....................        
+....................       /*-----incremento-----------*/ 
+....................       if (!(input (PIN_C0))){ 
+0194:  BTFSC  F82.0
+0196:  BRA    0204
+....................           
+....................          delay_ms(100);          
+0198:  MOVLW  64
+019A:  MOVWF  20
+019C:  RCALL  0004
+....................                   
+....................          if(mov == 0){ 
+019E:  MOVF   13,F
+01A0:  BNZ   01C0
+....................              
+....................             if (n5 !=9) 
+01A2:  MOVF   17,W
+01A4:  SUBLW  09
+01A6:  BZ    01AA
+....................                n5++;                         
+01A8:  INCF   17,F
+....................            s5 = numeros[n5] - 0x80;  
+01AA:  CLRF   03
+01AC:  MOVF   17,W
+01AE:  ADDLW  05
+01B0:  MOVWF  FE9
+01B2:  MOVLW  00
+01B4:  ADDWFC 03,W
+01B6:  MOVWF  FEA
+01B8:  MOVLW  80
+01BA:  SUBWF  FEF,W
+01BC:  MOVWF  12
+....................              
+....................          }else{ 
+01BE:  BRA    0204
+....................           
+....................             if(mov == 1){                
+01C0:  DECFSZ 13,W
+01C2:  BRA    01E2
+....................                 
+....................                if (n6 != 9) 
+01C4:  MOVF   18,W
+01C6:  SUBLW  09
+01C8:  BZ    01CC
+....................                   n6++;                
+01CA:  INCF   18,F
+....................                 
+....................                s6 = numeros[n6] - 0x80; 
+01CC:  CLRF   03
+01CE:  MOVF   18,W
+01D0:  ADDLW  05
+01D2:  MOVWF  FE9
+01D4:  MOVLW  00
+01D6:  ADDWFC 03,W
+01D8:  MOVWF  FEA
+01DA:  MOVLW  80
+01DC:  SUBWF  FEF,W
+01DE:  MOVWF  11
+....................                 
+....................             }else { 
+01E0:  BRA    0204
+....................                 
+....................                if(mov == 2){ 
+01E2:  MOVF   13,W
+01E4:  SUBLW  02
+01E6:  BNZ   0204
+....................                   
+....................                  if (n7 !=9) 
+01E8:  MOVF   19,W
+01EA:  SUBLW  09
+01EC:  BZ    01F0
+....................                      n7++;                      
+01EE:  INCF   19,F
+....................                   s7 = numeros[n7] - 0x80; 
+01F0:  CLRF   03
+01F2:  MOVF   19,W
+01F4:  ADDLW  05
+01F6:  MOVWF  FE9
+01F8:  MOVLW  00
+01FA:  ADDWFC 03,W
+01FC:  MOVWF  FEA
+01FE:  MOVLW  80
+0200:  SUBWF  FEF,W
+0202:  MOVWF  10
+....................                } 
+....................              
+....................             } 
+....................          }          
+....................       } 
+....................        
+....................       /*-----terminar iteraccion--*/ 
+....................       if (!(input (PIN_c5))) 
+0204:  BTFSC  F82.5
+0206:  BRA    020C
+....................          n=1; 
+0208:  MOVLW  01
+020A:  MOVWF  1F
+....................        
+....................       //---- display 7-------// 
+....................       OUTPUT_D(0x7f); 
+020C:  CLRF   F95
+020E:  MOVLW  7F
+0210:  MOVWF  F8C
+....................       OUTPUT_B(s7); 
+0212:  CLRF   F93
+0214:  MOVFF  10,F8A
+....................       delay_ms(tiempo); 
+0218:  MOVLW  02
+021A:  MOVWF  20
+021C:  RCALL  0004
+....................     
+....................       //---- display 6-------// 
+....................       OUTPUT_D(0xbf); 
+021E:  CLRF   F95
+0220:  MOVLW  BF
+0222:  MOVWF  F8C
+....................       OUTPUT_B(s6); 
+0224:  CLRF   F93
+0226:  MOVFF  11,F8A
+....................       delay_ms(tiempo);  
+022A:  MOVLW  02
+022C:  MOVWF  20
+022E:  RCALL  0004
+....................        
+....................       //---- display 5-------// 
+....................       OUTPUT_D(0xdf); 
+0230:  CLRF   F95
+0232:  MOVLW  DF
+0234:  MOVWF  F8C
+....................       OUTPUT_B(s5); 
+0236:  CLRF   F93
+0238:  MOVFF  12,F8A
+....................       delay_ms(tiempo); 
+023C:  MOVLW  02
+023E:  MOVWF  20
+0240:  RCALL  0004
+0242:  BRA    0082
+....................     
+....................    } 
+....................     
+....................        
+....................    while(n==1){ 
+0244:  DECFSZ 1F,W
+0246:  BRA    03BE
+....................        
+....................       contador++; 
+0248:  INCF   1D,F
+....................        
+....................       if(contador == 20){                             //-----------------------> el establece el tiempo que se demora en contar cada display 
+024A:  MOVF   1D,W
+024C:  SUBLW  14
+024E:  BNZ   02E4
+....................        
+....................          contador=0;                                  //-----------------------> reinicia el contador  
+0250:  CLRF   1D
+....................           
+....................          if ((n0 >= n5)&& (n1 >= n6) && (n2 >= n7 )){ //-----------------------> evaluamos si alcanzamos el valor de referencia 
+0252:  MOVF   17,W
+0254:  SUBWF  14,W
+0256:  BNC   02BA
+0258:  MOVF   18,W
+025A:  SUBWF  15,W
+025C:  BNC   02BA
+025E:  MOVF   19,W
+0260:  SUBWF  16,W
+0262:  BNC   02BA
+....................              
+....................             c2++;                                     //-----------------------> alternamos entre encendido y apagado 
+0264:  INCF   1E,F
+....................              
+....................             if (c2 % 2 == 0){ 
+0266:  MOVF   1E,W
+0268:  ANDLW  01
+026A:  BNZ   02A4
+....................                 
+....................                n0 = a0;                               //-----------------------> restablecemos el numero original que lleva el contador 
+026C:  MOVFF  1A,14
+....................                n1 = a1;                               //-----------------------> restablecemos el numero original que lleva el contador 
+0270:  MOVFF  1B,15
+....................                n2 = a2;                               //-----------------------> restablecemos el numero original que lleva el contador 
+0274:  MOVFF  1C,16
+....................                 
+....................                if(n0 >= 9){ 
+0278:  MOVF   14,W
+027A:  SUBLW  08
+027C:  BC    02A0
+....................                   if(n1 >= 9){                
+027E:  MOVF   15,W
+0280:  SUBLW  08
+0282:  BC    029A
+....................                      if(n2 >= 9){ 
+0284:  MOVF   16,W
+0286:  SUBLW  08
+0288:  BC    0292
+....................                       
+....................                         n0 = 0;                       //-----------------------> evitamos que se desborde el coteo del led (no superar 9) 
+028A:  CLRF   14
+....................                         n1 = 0;                       //-----------------------> evitamos que se desborde el coteo del led (no superar 9) 
+028C:  CLRF   15
+....................                         n2 = 0;                       //-----------------------> evitamos que se desborde el coteo del led (no superar 9) 
+028E:  CLRF   16
+....................                          
+....................                      }else{ 
+0290:  BRA    0298
+....................                          
+....................                         n2++;                         //-----------------------> pasamos al siguiente numero 
+0292:  INCF   16,F
+....................                         n1 = 0;                       //-----------------------> evitamos que se desborde el coteo del led (no superar 9) 
+0294:  CLRF   15
+....................                         n0 = 0;                       //-----------------------> evitamos que se desborde el coteo del led (no superar 9)                  
+0296:  CLRF   14
+....................                      } 
+....................                       
+....................                   }else{ 
+0298:  BRA    029E
+....................                       
+....................                      n0 = 0; 
+029A:  CLRF   14
+....................                      n1++;                
+029C:  INCF   15,F
+....................                   } 
+....................                    
+....................                }else{ 
+029E:  BRA    02A2
+....................                 
+....................                   n0++; 
+02A0:  INCF   14,F
+....................              
+....................                } 
+....................                 
+....................             }else{ 
+02A2:  BRA    02B8
+....................                 
+....................                a0 = n0;                               //-----------------------> guardamos el numero original que lleva el contador 
+02A4:  MOVFF  14,1A
+....................                a1 = n1;                               //-----------------------> guardamos el numero original que lleva el contador 
+02A8:  MOVFF  15,1B
+....................                a2 = n2;                               //-----------------------> guardamos el numero original que lleva el contador 
+02AC:  MOVFF  16,1C
+....................                 
+....................                n0 = 10;                               //-----------------------> apagamos los leds que cuentan 
+02B0:  MOVLW  0A
+02B2:  MOVWF  14
+....................                n1 = 10;;                               //-----------------------> apagamos los leds que cuentan 
+02B4:  MOVWF  15
+....................                n2 = 10;;                               //-----------------------> apagamos los leds que cuentan 
+02B6:  MOVWF  16
+....................             } 
+....................          }else{ 
+02B8:  BRA    02E4
+....................           
+....................             if(n0 >= 9){          
+02BA:  MOVF   14,W
+02BC:  SUBLW  08
+02BE:  BC    02E2
+....................                if(n1 >= 9){                
+02C0:  MOVF   15,W
+02C2:  SUBLW  08
+02C4:  BC    02DC
+....................                   if(n2 >= 9){ 
+02C6:  MOVF   16,W
+02C8:  SUBLW  08
+02CA:  BC    02D4
+....................                    
+....................                      n0 = 0; 
+02CC:  CLRF   14
+....................                      n1 = 0;  
+02CE:  CLRF   15
+....................                      n2 = 0; 
+02D0:  CLRF   16
+....................                       
+....................                   }else{ 
+02D2:  BRA    02DA
+....................                       
+....................                      n2++; 
+02D4:  INCF   16,F
+....................                      n1 = 0; 
+02D6:  CLRF   15
+....................                      n0 = 0;                   
+02D8:  CLRF   14
+....................                   } 
+....................                    
+....................                }else{ 
+02DA:  BRA    02E0
+....................                    
+....................                   n0 = 0; 
+02DC:  CLRF   14
+....................                   n1++;                
+02DE:  INCF   15,F
+....................                } 
+....................                 
+....................             }else{ 
+02E0:  BRA    02E4
+....................              
+....................                n0++; 
+02E2:  INCF   14,F
+....................           
+....................             }    
+....................           
+....................          } 
+....................        
+....................       } 
+....................        
+....................        
+....................        
+....................       //---- display 7-------// 
+....................       OUTPUT_D(0x7f); 
+02E4:  CLRF   F95
+02E6:  MOVLW  7F
+02E8:  MOVWF  F8C
+....................       OUTPUT_B(numeros[n7]); 
+02EA:  CLRF   03
+02EC:  MOVF   19,W
+02EE:  ADDLW  05
+02F0:  MOVWF  FE9
+02F2:  MOVLW  00
+02F4:  ADDWFC 03,W
+02F6:  MOVWF  FEA
+02F8:  MOVFF  FEF,20
+02FC:  CLRF   F93
+02FE:  MOVFF  20,F8A
+....................       delay_ms(tiempo ); 
+0302:  MOVLW  02
+0304:  MOVWF  20
+0306:  RCALL  0004
+....................     
+....................       //---- display 6-------// 
+....................       OUTPUT_D(0xbf); 
+0308:  CLRF   F95
+030A:  MOVLW  BF
+030C:  MOVWF  F8C
+....................       OUTPUT_B(numeros[n6]); 
+030E:  CLRF   03
+0310:  MOVF   18,W
+0312:  ADDLW  05
+0314:  MOVWF  FE9
+0316:  MOVLW  00
+0318:  ADDWFC 03,W
+031A:  MOVWF  FEA
+031C:  MOVFF  FEF,20
+0320:  CLRF   F93
+0322:  MOVFF  20,F8A
+....................       delay_ms(tiempo);  
+0326:  MOVLW  02
+0328:  MOVWF  20
+032A:  RCALL  0004
+....................        
+....................       //---- display 5-------// 
+....................       OUTPUT_D(0xdf); 
+032C:  CLRF   F95
+032E:  MOVLW  DF
+0330:  MOVWF  F8C
+....................       OUTPUT_B(numeros[n5]); 
+0332:  CLRF   03
+0334:  MOVF   17,W
+0336:  ADDLW  05
+0338:  MOVWF  FE9
+033A:  MOVLW  00
+033C:  ADDWFC 03,W
+033E:  MOVWF  FEA
+0340:  MOVFF  FEF,20
+0344:  CLRF   F93
+0346:  MOVFF  20,F8A
+....................       delay_ms(tiempo);       
+034A:  MOVLW  02
+034C:  MOVWF  20
+034E:  RCALL  0004
+....................        
+....................       //---- display 2-------// 
+....................       OUTPUT_D(0xfb); 
+0350:  CLRF   F95
+0352:  MOVLW  FB
+0354:  MOVWF  F8C
+....................       OUTPUT_B(numeros[n2]); 
+0356:  CLRF   03
+0358:  MOVF   16,W
+035A:  ADDLW  05
+035C:  MOVWF  FE9
+035E:  MOVLW  00
+0360:  ADDWFC 03,W
+0362:  MOVWF  FEA
+0364:  MOVFF  FEF,20
+0368:  CLRF   F93
+036A:  MOVFF  20,F8A
+....................       delay_ms(tiempo); 
+036E:  MOVLW  02
+0370:  MOVWF  20
+0372:  RCALL  0004
+....................     
+....................       //---- display 1-------// 
+....................       OUTPUT_D(0xfc); 
+0374:  CLRF   F95
+0376:  MOVLW  FC
+0378:  MOVWF  F8C
+....................       OUTPUT_B(numeros[n1]); 
+037A:  CLRF   03
+037C:  MOVF   15,W
+037E:  ADDLW  05
+0380:  MOVWF  FE9
+0382:  MOVLW  00
+0384:  ADDWFC 03,W
+0386:  MOVWF  FEA
+0388:  MOVFF  FEF,20
+038C:  CLRF   F93
+038E:  MOVFF  20,F8A
+....................       delay_ms(tiempo);  
+0392:  MOVLW  02
+0394:  MOVWF  20
+0396:  RCALL  0004
+....................        
+....................       //---- display 0-------// 
+....................       OUTPUT_D(0xfE); 
+0398:  CLRF   F95
+039A:  MOVLW  FE
+039C:  MOVWF  F8C
+....................       OUTPUT_B(numeros[n0]); 
+039E:  CLRF   03
+03A0:  MOVF   14,W
+03A2:  ADDLW  05
+03A4:  MOVWF  FE9
+03A6:  MOVLW  00
+03A8:  ADDWFC 03,W
+03AA:  MOVWF  FEA
+03AC:  MOVFF  FEF,20
+03B0:  CLRF   F93
+03B2:  MOVFF  20,F8A
+....................       delay_ms(tiempo); 
+03B6:  MOVLW  02
+03B8:  MOVWF  20
+03BA:  RCALL  0004
+03BC:  BRA    0244
+....................        
+....................    } 
+....................     
+....................        
+.................... } 
+....................  
+03BE:  SLEEP 
+.................... /* 
+....................  7   6   5   4        3   2   1   0 
+....................  _   _   _   _        _   _   _   _ 
+.................... |_| |_| |_| |_|      |_| |_| |_| |_| 
+.................... |_| |_| |_| |_|      |_| |_| |_| |_| 
+....................  7   b   d  null     null b   c   f  --> codigo para encender cada led en HEX 
+.................... ---------------      --------------- 
+....................        
+....................       a 
+....................       _ 
+....................     f|_|b   medio g 
+....................     e|_|c 
+....................       d 
+.................... */ 
+
+Configuration Fuses:
+   Word  1: CF3F   PLL12 CPUDIV4 USBDIV FCMEN IESO
+   Word  2: 1E3E   PUT BROWNOUT BORV21 VREGEN NOWDT WDT32768
+   Word  3: 8700   CCP2C1 PBADEN LPT1OSC MCLR
+   Word  4: 00A1   STVREN NOLVP ICSP2 NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: E00F   NOWRT NOWRTC NOWRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB

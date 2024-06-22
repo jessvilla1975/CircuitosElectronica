@@ -1,0 +1,96 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004-005 @sprintf_string
+006     main.i
+007     main.j
+008     lcd_init.i
+008     @PSTRINGC_651.@SCRATCH1
+009     lcd_init.@SCRATCH1
+009     @PSTRINGC_651.@SCRATCH2
+00A     lcd_putc.c
+00B     @delay_ms1.P1
+00B     lcd_gotoxy.x
+00C     lcd_gotoxy.y
+00D     lcd_gotoxy.address
+00E     lcd_gotoxy.@SCRATCH1
+00F     lcd_send_byte.address
+010     lcd_send_byte.n
+011     lcd_read_byte.low
+011     lcd_send_byte.@SCRATCH1
+012     lcd_send_nibble.n
+012     lcd_read_byte.high
+013     lcd_read_byte.@SCRATCH1
+F83     lcd
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P1
+FE9-FEA @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P3
+FE9-FEA @READ_PROGRAM_MEMORY.P4
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000004  LCD_INIT_STRING.call
+000014  LCD_INIT_STRING.data
+000018  @const662.call
+000022  @delay_ms1
+00004A  lcd_send_nibble
+000062  lcd_read_byte
+00009A  lcd_send_byte
+0000D0  lcd_init
+00011E  lcd_gotoxy
+000140  lcd_putc
+000182  @PSTRINGC_651
+0001A4  main
+0001A4  @cinit1
+0001B8  @cinit2
+
+Project Directory:
+    D:\Universidad\CircuitosElectr-nica\3. Pacman\
+
+Project Files:
+    Pac_Man.c                                               [22-jun.-24 01:18  CRC=D4AD26EF]
+    ..\..\..\Program Files (x86)\PICC\Devices\18F4550.H     [12-nov.-13 14:35  CRC=5337E248]
+    Mi_LCD.c                                                [25-abr.-22 20:48  CRC=D2A036CA]
+
+Source signature=CD2576CB
+Program memory checksum=0000
+Program memory CRC=0000
+Hex file CRC=0D84
+
+Units:
+    Pac_Man (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   Pac_Man.xsym
+    Errors:      Pac_Man.err
+    Ext Symbols: Pac_Man.esym
+    INHX32:      Pac_Man.hex
+    Symbols:     Pac_Man.sym
+    List:        Pac_Man.lst
+    Debug/COFF:  Pac_Man.cof
+    Project:     Pac_Man.ccspjt
+    Call Tree:   Pac_Man.tre
+    Statistics:  Pac_Man.STA

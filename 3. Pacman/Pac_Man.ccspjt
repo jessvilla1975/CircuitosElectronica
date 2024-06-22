@@ -1,0 +1,64 @@
+[PROJECT]
+Target=Pac_Man.hex
+Development_Mode=2
+Processor=0x4550
+Processor_Text=PIC18F4550
+ToolSuite=CCS
+CCSVersion=5.059
+Compiler=PCH
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=Pac_Man.c
+BuildTool=C-COMPILER
+OptionString=+FH
+AdditionalOptionString=
+BuildRequired=1
+
+[Pac_Man.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=Pac_Man.c
+
+[Windows]
+0=0000 Pac_Man.c 0 0 796 451 3 0
+
+[Opened Files]
+1=Pac_Man.c
+2=
+3=
+4=
+t1=29
+t2=1
+Count=1
+
+[ProjectLog]
+Days=2
+D1=25-12-2019
+D1_L=2
+D1_L1=[54137]Project Opened.
+D1_L2=[55306]Project Closed.
+D2=07-05-2024
+D2_L=6
+D2_L1=[71114]Project Opened.
+D2_L2=[71296]Started Editing.
+D2_L3=[71601]Stopped Editing.
+D2_L4=[71790]Started Editing.
+D2_L5=[72421]Stopped Editing.
+D2_L6=[72818]Started Editing.
+
+[defines]
+buildcount=19
+[Units]
+Count=1
+1=Pac_Man (main)

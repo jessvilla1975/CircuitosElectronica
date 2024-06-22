@@ -1,0 +1,132 @@
+CCS PCH C Compiler, Version 5.059, 5967               22-jun.-24 00:06
+
+               Filename:   D:\Universidad\Electronica\V SEMESTRE\Microprocesadores1\PROGRAMAS\bin_7seg\segmentos.lst
+
+               ROM used:   162 bytes (0%)
+                           Largest free fragment is 32606
+               RAM used:   16 (1%) at main() level
+                           16 (1%) worst case
+               Stack used: 0 locations
+               Stack size: 31
+
+*
+0000:  GOTO   002E
+....................  
+.................... #include <18F4550.H> 
+.................... //////////// Standard Header file for the PIC18F4550 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC18F4550 
+....................  
+.................... #list 
+....................  
+.................... #use delay(clock=4Mhz) 
+0004:  CLRF   FEA
+0006:  MOVLW  10
+0008:  MOVWF  FE9
+000A:  MOVF   FEF,W
+000C:  BZ    002A
+000E:  MOVLW  01
+0010:  MOVWF  01
+0012:  CLRF   00
+0014:  DECFSZ 00,F
+0016:  BRA    0014
+0018:  DECFSZ 01,F
+001A:  BRA    0012
+001C:  MOVLW  4A
+001E:  MOVWF  00
+0020:  DECFSZ 00,F
+0022:  BRA    0020
+0024:  BRA    0026
+0026:  DECFSZ FEF,F
+0028:  BRA    000E
+002A:  GOTO   009A (RETURN)
+.................... #fuses XT, NOPROTECT, NOPUT, NOWDT, NOBROWNOUT, NOLVP, NOCPD 
+....................  
+.................... void main(){ 
+002E:  CLRF   FF8
+0030:  BCF    FD0.7
+0032:  MOVF   FC1,W
+0034:  ANDLW  C0
+0036:  IORLW  0F
+0038:  MOVWF  FC1
+003A:  MOVLW  07
+003C:  MOVWF  FB4
+....................    int8 i; 
+....................    set_tris_b(0x00);  // define el puerto b como salida 
+003E:  MOVLW  00
+0040:  MOVWF  F93
+....................    set_tris_d(0x00);  // define le puerto d como salida 
+0042:  MOVWF  F95
+....................     
+....................    int8 display[10] = {192,249,164,176,153,146,130,248,128,144}; 
+0044:  MOVLW  C0
+0046:  MOVWF  06
+0048:  MOVLW  F9
+004A:  MOVWF  07
+004C:  MOVLW  A4
+004E:  MOVWF  08
+0050:  MOVLW  B0
+0052:  MOVWF  09
+0054:  MOVLW  99
+0056:  MOVWF  0A
+0058:  MOVLW  92
+005A:  MOVWF  0B
+005C:  MOVLW  82
+005E:  MOVWF  0C
+0060:  MOVLW  F8
+0062:  MOVWF  0D
+0064:  MOVLW  80
+0066:  MOVWF  0E
+0068:  MOVLW  90
+006A:  MOVWF  0F
+....................    while(true){ 
+....................        for(i=0;i<10;i++){ 
+006C:  CLRF   05
+006E:  MOVF   05,W
+0070:  SUBLW  09
+0072:  BNC   009E
+....................           output_b(i^0xFF); 
+0074:  MOVF   05,W
+0076:  XORLW  FF
+0078:  CLRF   F93
+007A:  MOVWF  F8A
+....................           output_d(display[i]); 
+007C:  CLRF   03
+007E:  MOVF   05,W
+0080:  ADDLW  06
+0082:  MOVWF  FE9
+0084:  MOVLW  00
+0086:  ADDWFC 03,W
+0088:  MOVWF  FEA
+008A:  MOVFF  FEF,10
+008E:  CLRF   F95
+0090:  MOVFF  10,F8C
+....................           delay_ms(200); 
+0094:  MOVLW  C8
+0096:  MOVWF  10
+0098:  BRA    0004
+009A:  INCF   05,F
+009C:  BRA    006E
+....................        } 
+009E:  BRA    006C
+....................    } 
+....................  
+.................... } 
+00A0:  SLEEP 
+
+Configuration Fuses:
+   Word  1: C03F   PLL12 CPUDIV4 USBDIV XT FCMEN IESO
+   Word  2: 1E39   NOPUT NOBROWNOUT BORV21 VREGEN NOWDT WDT32768
+   Word  3: 8700   CCP2C1 PBADEN LPT1OSC MCLR
+   Word  4: 00A1   STVREN NOLVP ICSP2 NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: E00F   NOWRT NOWRTC NOWRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB

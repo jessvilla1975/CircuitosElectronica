@@ -1,0 +1,101 @@
+/* PROGRAMA ********************************************************************
+                            Nombre: Pac_Man.c
+                      Autor: Ramiro Victoria Alvarez
+                             (C) Julio de 2016
+Descripción: Este programa es un ejemplo de aplicación de un Módulo LCD y la
+generación de caracteres especiales. Presenta un mensaje y un Pac_Man que hace un
+recorrido a través de la pantalla comiendose las letras del mensaje impreso.
+*******************************************************************************/
+#include <18F4550.H>
+#use delay(clock=20000000)
+#use i2c(master,sda=PIN_b0, scl=PIN_b1)
+#fuses XT, NOPROTECT, NOPUT, NOWDT, NOBROWNOUT, NOLVP, NOCPD
+#include "Mi_LCD.c"
+
+//Registros DS1307 
+#define ds_seconds   0 
+#define ds_minutes   1 
+#define ds_hours     2 
+#define ds_day       3 
+#define ds_date      4 
+#define ds_month     5 
+#define ds_year      6 
+#define ds_control   7 
+
+//ojo importante, si el pin Vbat del DS1307 no tiene 3.5v ponlo a gnd
+//de lo contrario no funciona
+
+void main(void) 
+{ 
+
+   //Dato en registro ds, a mandar o leer 
+   byte seconds,minutes,hours,day,date,month,year,control; 
+
+   //Justo cuando prende circuito, la fecha que establece es la siguiente 
+   seconds= 0x00; 
+   minutes= 0x38; 
+   hours =  0x15; //modo 24 hrs 
+   day =    0x05; //1 es domingo 
+   date =   0x20; 
+   month =  0x04; 
+   year =   0x09; 
+   control= 0x00; //OUT=0 SQWE=0 RS0-1=0 no hay onda cuadrada 
+
+
+   //Establece fecha y hora 
+   i2c_start(); //Inicia I2C 
+   i2c_write(0xd0); //Direcciona DS1307 write 
+   i2c_write(ds_seconds); //Indica que empiece en registro ds_seconds 
+   //Aquí establece fecha y hora respecto a la puesta arriba 
+   i2c_write(seconds); 
+   i2c_write(minutes); 
+   i2c_write(hours); 
+   i2c_write(day); 
+   i2c_write(date); 
+   i2c_write(month); 
+   i2c_write(year); 
+   i2c_write(control); 
+   i2c_stop(); //Ya puso la hora y fecha 
+   //El RTC ya está marcando el tiempo y fecha 
+
+   //Rutina LCD 
+   lcd_init(); //Inicia LCD 
+   lcd_putc("\f"); //Limpia LCD 
+   lcd_putc("Real Time Clock\n"); //rtc 
+   lcd_putc(" DS1307"); 
+   delay_ms(1000); 
+   lcd_putc("\f"); //Limpia LCD
+
+do{
+
+ 
+
+delay_ms(250); //Usuario lee 
+
+//Obtiene datos de DS1307 
+i2c_start(); //Inicia I2C 
+i2c_write(0xd0); //Direcciona DS1307 write 
+i2c_write(ds_seconds); //Indica que ponga registro en ds_seconds
+i2c_stop(); 
+
+i2c_start(); 
+i2c_write(0xd1); //Lee DS1307 
+seconds = i2c_read(); 
+minutes = i2c_read(); 
+hours = i2c_read(); 
+day = i2c_read(); 
+date = i2c_read(); 
+month = i2c_read(); 
+year = i2c_read(0); //no ack 
+i2c_stop(); 
+
+
+lcd_gotoxy(1,1);
+printf(lcd_putc,"%2x-%2x-20%2x\n",date,month,year); //dd-mm-year 
+printf(lcd_putc,"%2x:%2x:%2x",hours,minutes,seconds); //23:59:59 
+} while(true); 
+
+} 
+
+
+
