@@ -40,4 +40,5 @@ Este código en C está diseñado para un microcontrolador PIC18F4550 y controla
 
 ## Programa 3: Pacman
 Este código en C para un microcontrolador PIC18F4550 controla un LCD para simular un juego de Pac-Man. Pac-Man se mueve automáticamente a lo largo de la pantalla del LCD, alternando entre diferentes posiciones de la boca (abierta, cerrada, arriba, abajo) para crear una animación. 
+
 ![3](https://github.com/jessvilla1975/CircuitosElectr-nica/assets/114515509/a53c531f-7438-4dac-8692-d965de99e767)
