@@ -36,6 +36,7 @@ El programa enciende un display de 7 segmentos conectado a los puertos B y D del
 
 ## Programa 2: Control de Displays de 7 Segmentos con Buffer de Dígitos
 Este código en C está diseñado para un microcontrolador PIC18F4550 y controla un display de 7 segmentos, programando una alarma y un cronómetro. Los tres primeros elementos del buffer se utilizan para la alarma, con funciones para incrementar, decrementar y resetear valores, mientras que los tres últimos elementos se usan para el cronómetro. El cronómetro se inicia con la tecla Enter, y cuando ambos segmentos del buffer coinciden, el display parpadea como una alarma. El código también incluye funciones para actualizar continuamente el display mostrando los valores del buffer.
+
 ![2](https://github.com/jessvilla1975/CircuitosElectr-nica/assets/114515509/4b5e9890-06a6-4e4e-8834-c0402a48a082)
 
 ## Programa 3: Pacman
