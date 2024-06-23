@@ -1,0 +1,163 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     x
+005     y
+006-009 A
+00A-00D B
+00E-011 c
+012     MAIN.K
+013     MAIN.T
+014     MAIN.LaTecla
+015     @PRINTF_D_662.P1
+015-018 @PRINTF_L32D_662FPFPF.P2
+015-018 @DIVFF.P3
+015     lcd_init.i
+015     kbd_getc.tecla
+015     MAIN.@SCRATCH1
+016     @PRINTF_D_662.P1
+016     lcd_init.@SCRATCH1
+016     MAIN.@SCRATCH2
+017     MAIN.@SCRATCH3
+017     @PRINTF_D_662.@SCRATCH1
+018     MAIN.@SCRATCH4
+018     @PRINTF_D_662.@SCRATCH2
+019-01C @ADDFF.P1
+019     @PRINTF_L32D_662FPFPF.P2
+019-01A @ITOF.P3
+019-01C @DIVFF.P4
+019     @PRINTF_D_662.@SCRATCH3
+01A     @PRINTF_D_662.@SCRATCH4
+01A     @PRINTF_L32D_662FPFPF.@SCRATCH1
+01B     @DIV88.P1
+01B     @PRINTF_L32D_662FPFPF.@SCRATCH2
+01C     @DIV88.P1
+01C     @PRINTF_L32D_662FPFPF.@SCRATCH3
+01D-020 @ADDFF.P1
+01D     @DIV88.@SCRATCH1
+01D     @PRINTF_L32D_662FPFPF.@SCRATCH4
+01D     @DIVFF.@SCRATCH1
+01E     @PRINTF_L32D_662FPFPF.@SCRATCH5
+01E     @DIVFF.@SCRATCH2
+01F     @PRINTF_L32D_662FPFPF.@SCRATCH6
+01F     @DIVFF.@SCRATCH3
+020     @PRINTF_L32D_662FPFPF.@SCRATCH7
+020     @DIVFF.@SCRATCH4
+021     @ADDFF.@SCRATCH1
+021     @PRINTF_L32D_662FPFPF.@SCRATCH8
+021     @DIVFF.@SCRATCH5
+022     lcd_putc.c
+022-025 @DIV3232.P1
+022-025 @MULFF.P2
+022-025 @FTOSD.P3
+022     @ADDFF.@SCRATCH2
+022     @DIVFF.@SCRATCH6
+023     @delay_ms1.P1
+023     lcd_gotoxy.x
+023     @ADDFF.@SCRATCH3
+024     lcd_gotoxy.y
+024     @ADDFF.@SCRATCH4
+025     lcd_gotoxy.address
+025     @ADDFF.@SCRATCH5
+026-029 @DIV3232.P1
+026-029 @MULFF.P2
+026     lcd_gotoxy.@SCRATCH1
+026     @ADDFF.@SCRATCH6
+026     @FTOSD.@SCRATCH1
+027     lcd_send_byte.address
+027     @ADDFF.@SCRATCH7
+028     lcd_send_byte.n
+028     @ADDFF.@SCRATCH8
+029     lcd_read_byte.low
+029     lcd_send_byte.@SCRATCH1
+02A     lcd_read_byte.high
+02A     lcd_send_nibble.n
+02A     @MULFF.@SCRATCH1
+02A     @DIV3232.@SCRATCH1
+02B     lcd_read_byte.@SCRATCH1
+02B     @MULFF.@SCRATCH2
+02B     @DIV3232.@SCRATCH2
+02C     @MULFF.@SCRATCH3
+02C     @DIV3232.@SCRATCH3
+02D     @DIV3232.@SCRATCH4
+02E     @DIV3232.@SCRATCH5
+F81     PORTB
+F83     lcd
+F83     PORTD
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P3
+FE9-FEA @READ_PROGRAM_MEMORY.P4
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000004  LCD_INIT_STRING.call
+000014  LCD_INIT_STRING.data
+000018  @delay_ms1
+000040  lcd_send_nibble
+000058  lcd_read_byte
+000090  lcd_send_byte
+0000C6  lcd_init
+00011E  kbd_getc
+0001FE  @MULFF
+0002F0  @ITOF
+000326  @ADDFF
+000590  lcd_gotoxy
+0005B2  @DIV88
+0005DA  lcd_putc
+00061C  @PRINTF_D_662
+0006C6  @FTOSD
+000706  @DIV3232
+000794  @PRINTF_L32D_662FPFPF
+00090C  @DIVFF
+000A68  MAIN
+000A68  @cinit1
+000A94  @cinit2
+
+Project Directory:
+    C:\Users\Carlos Valencia\Desktop\Calculadora\
+
+Project Files:
+    main.c                                                  [09-sep.-19 13:44  CRC=4A9E4B56]
+    ..\..\..\..\Program Files (x86)\PICC\Devices\18F4550.H  [10-jul.-13 14:57  CRC=A157EDDE]
+    Mi_LCD.c                                                [19-ago.-19 13:32  CRC=3C7105E5]
+    Mi_Teclado.c                                            [25-ago.-19 18:21  CRC=6EA1EFE7]
+
+Source signature=05AB1EE7
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX32:      main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

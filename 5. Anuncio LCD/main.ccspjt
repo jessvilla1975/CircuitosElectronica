@@ -1,0 +1,79 @@
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+Library=
+LinkerScript=
+[defines]
+enabled=0
+chip=1
+D1=
+V1=
+buildcount=1
+[fileformats]
+forcecoff=1
+debug=4
+error=2
+object=0
+list=0
+scratch=0
+sta=1
+tre=1
+allerrors=1
+allwarnings=1
+stayupne=3
+stayupoe=0
+[PROJECT]
+Target=main.hex
+Development_Mode=
+Processor_Text=PIC18F4550
+ToolSuite=CCS
+CCSVersion=5.059
+Compiler=PCH
+[Target Data]
+BuildTool=C-COMPILER
+OptionString=+FM
+AdditionalOptionString=
+BuildRequired=1
+FileList=main.c
+[main.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+[mru-list]
+1=main.c
+[Windows]
+0=0000 %S 0 0 796 451 3 0
+[CompilerVersion]
+Fixed=
+[Opened Files]
+1=main.c
+2=..\..\..\..\..\Downloads\nombre\main.c
+3=
+t1=82
+Count=1
+
+[ProjectLog]
+Days=3
+D1=11-08-2019
+D1_L=2
+D1_L1=[5616]Project Opened.
+D1_L2=[5649]Project Closed.
+D2=12-08-2019
+D2_L=2
+D2_L1=[62195]Project Opened.
+D2_L2=[62217]Project Closed.
+D3=20-09-2019
+D3_L=4
+D3_L1=[65398]Project Opened.
+D3_L2=[65415]Started Editing.
+D3_L3=[65472]Stopped Editing.
+TotalEdit=1
+TotalDebug=0
+D3_E=1
+D3_D=0
+D3_L4=[65472]Project Closed.
+[Units]
+Count=1
+1=main (main)

@@ -1,0 +1,203 @@
+CCS PCH C Compiler, Version 5.015, 5967               07-jun.-17 01:09
+
+               Filename:   C:\Users\script\Documents\CCS C Projects\taller2\SECUENCIA 3\SecuenciaLed.lst
+
+               ROM used:   242 bytes (1%)
+                           Largest free fragment is 32526
+               RAM used:   4 (0%) at main() level
+                           7 (0%) worst case
+               Stack used: 1 locations
+               Stack size: 31
+
+*
+0000:  GOTO   002C
+.................... #include <18F4550.h> 
+.................... //////////// Standard Header file for the PIC18F4550 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC18F4550 
+....................  
+.................... #list 
+....................  
+.................... //| tx cristales <= 4Mhz; ht cristales > 4Mhz;|,  nowdt -> no usa el recurso de reset al estar en un bucle, noproject-> no protejer codigo 
+.................... #fuses xt,nowdt,noprotect,put  
+.................... #use delay(clock = 4Mhz) 
+0004:  CLRF   FEA
+0006:  MOVLW  07
+0008:  MOVWF  FE9
+000A:  MOVF   FEF,W
+000C:  BZ    002A
+000E:  MOVLW  01
+0010:  MOVWF  01
+0012:  CLRF   00
+0014:  DECFSZ 00,F
+0016:  BRA    0014
+0018:  DECFSZ 01,F
+001A:  BRA    0012
+001C:  MOVLW  4A
+001E:  MOVWF  00
+0020:  DECFSZ 00,F
+0022:  BRA    0020
+0024:  BRA    0026
+0026:  DECFSZ FEF,F
+0028:  BRA    000E
+002A:  RETURN 0
+.................... #use fast_io(b) 
+.................... #use fast_io(d) 
+....................  
+.................... void main(){ 
+002C:  CLRF   FF8
+002E:  BCF    FD0.7
+0030:  MOVF   FC1,W
+0032:  ANDLW  C0
+0034:  IORLW  0F
+0036:  MOVWF  FC1
+0038:  MOVLW  07
+003A:  MOVWF  FB4
+....................    set_tris_b(0x00);  // define el puerto b como salida 
+003C:  MOVLW  00
+003E:  MOVWF  F93
+....................    set_tris_d(0x00); // define le puerto d como salida 
+0040:  MOVWF  F95
+....................    output_d(0xFF); 
+0042:  SETF   F8C
+....................    output_b(0xFF); 
+0044:  SETF   F8A
+....................    int delay = 200; 
+0046:  MOVLW  C8
+0048:  MOVWF  05
+....................    while(true){ 
+....................  
+....................        output_b(0b11011111); //b5 
+004A:  MOVLW  DF
+004C:  MOVWF  F8A
+....................        delay_ms(delay); 
+004E:  MOVFF  05,07
+0052:  RCALL  0004
+....................        output_b(0b11101111); //b4 
+0054:  MOVLW  EF
+0056:  MOVWF  F8A
+....................        delay_ms(delay); 
+0058:  MOVFF  05,07
+005C:  RCALL  0004
+....................        output_b(0b11111011); // b2 
+005E:  MOVLW  FB
+0060:  MOVWF  F8A
+....................        delay_ms(delay); 
+0062:  MOVFF  05,07
+0066:  RCALL  0004
+....................        output_b(0b11111110); //b0 
+0068:  MOVLW  FE
+006A:  MOVWF  F8A
+....................        delay_ms(delay); 
+006C:  MOVFF  05,07
+0070:  RCALL  0004
+....................        output_b(0b11111101); //b1 
+0072:  MOVLW  FD
+0074:  MOVWF  F8A
+....................        delay_ms(delay); 
+0076:  MOVFF  05,07
+007A:  RCALL  0004
+....................        output_b(0b11110111); //b3 
+007C:  MOVLW  F7
+007E:  MOVWF  F8A
+....................        delay_ms(delay); 
+0080:  MOVFF  05,07
+0084:  RCALL  0004
+....................        output_b(0b11011111); //b5 
+0086:  MOVLW  DF
+0088:  MOVWF  F8A
+....................        delay_ms(delay); 
+008A:  MOVFF  05,07
+008E:  RCALL  0004
+....................        output_b(0b11101111); //b4 
+0090:  MOVLW  EF
+0092:  MOVWF  F8A
+....................        delay_ms(delay); 
+0094:  MOVFF  05,07
+0098:  RCALL  0004
+....................        output_b(0b10111111); //b6 
+009A:  MOVLW  BF
+009C:  MOVWF  F8A
+....................        delay_ms(delay); 
+009E:  MOVFF  05,07
+00A2:  RCALL  0004
+....................        output_b(0b11111111); //apaga los_b 
+00A4:  SETF   F8A
+....................         
+....................        output_d(0b11111110); //d0 
+00A6:  MOVLW  FE
+00A8:  MOVWF  F8C
+....................        delay_ms(delay); 
+00AA:  MOVFF  05,07
+00AE:  RCALL  0004
+....................        output_d(0b11111101); //d1 
+00B0:  MOVLW  FD
+00B2:  MOVWF  F8C
+....................        delay_ms(delay); 
+00B4:  MOVFF  05,07
+00B8:  RCALL  0004
+....................         
+....................        output_d(0b11111111); //apaga los_d 
+00BA:  SETF   F8C
+....................          
+....................        output_b(0b01111111); //b7 
+00BC:  MOVLW  7F
+00BE:  MOVWF  F8A
+....................        delay_ms(delay); 
+00C0:  MOVFF  05,07
+00C4:  RCALL  0004
+....................        delay -= 50; 
+00C6:  MOVLW  32
+00C8:  SUBWF  05,F
+....................        if(delay < 50){ 
+00CA:  MOVF   05,W
+00CC:  SUBLW  31
+00CE:  BNC   00EE
+....................            delay = 200; 
+00D0:  MOVLW  C8
+00D2:  MOVWF  05
+....................            int i; 
+....................            for(i = 0; i < 10; i++){ 
+00D4:  CLRF   06
+00D6:  MOVF   06,W
+00D8:  SUBLW  09
+00DA:  BNC   00EE
+....................                    output_d(0b00000000);  
+00DC:  CLRF   F8C
+....................                    output_b(0b00000000);  
+00DE:  CLRF   F8A
+....................                    delay_ms(200); 
+00E0:  MOVLW  C8
+00E2:  MOVWF  07
+00E4:  RCALL  0004
+....................                    output_d(0b11111111);  
+00E6:  SETF   F8C
+....................                    output_b(0b11111111);  
+00E8:  SETF   F8A
+00EA:  INCF   06,F
+00EC:  BRA    00D6
+....................            } 
+....................        } 
+00EE:  BRA    004A
+....................        
+....................    } 
+.................... } 
+....................  
+00F0:  SLEEP 
+
+Configuration Fuses:
+   Word  1: C03F   PLL12 CPUDIV4 USBDIV XT FCMEN IESO
+   Word  2: 1E3E   PUT BROWNOUT BORV21 VREGEN NOWDT WDT32768
+   Word  3: 8700   CCP2C1 PBADEN LPT1OSC MCLR
+   Word  4: 00A1   STVREN NOLVP ICSP2 NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: E00F   NOWRT NOWRTC NOWRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB

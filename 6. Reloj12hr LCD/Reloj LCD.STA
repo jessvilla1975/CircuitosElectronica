@@ -1,0 +1,66 @@
+
+ROM used:   1598/32768 (5%)
+            1598/32768 (5%) including unused fragments
+
+            1.2 Average locations per line
+            7.5 Average locations per statement
+
+RAM used:   39/2048 (2%) at main() level
+            63/2048 (3%) worst case
+
+Stack used: 11 worst case (5 in main + 6 for interrupts)
+Stack size: 31
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  214   110  52  Reloj LCD.c
+  841     0   0  ..\..\..\..\..\Program Files (x86)\PICC\Devices\18F4550.H
+  181    63  30  Mi_LCD.c
+   72    39  18  ..\..\..\..\..\Program Files (x86)\PICC\Drivers\Mi_Teclado.c
+----- -----
+ 1308   212 Total
+
+Page ROM  %  RAM    Vol Diff  Functions:
+---- --- --- ---    --- ----  ----------
+0     40   1    1             @delay_ms1
+0     20   1    0             @const634
+0     54   2    3    463  4.3  lcd_read_byte
+0     24   1    1    134  2.2  lcd_send_nibble
+0     54   2    3    317  4.3  lcd_send_byte
+0    138   4    2    422  4.7  lcd_init
+0     34   1    4    186  5.5  lcd_gotoxy
+0     66   2    1    272  4.1  lcd_putc
+0    226   7    1   1337  3.9  kbd_getc
+0    136   4    0   1148  6.3  Timer0_int
+0     36   1    2             @PSTRINGR_654
+0    160   5    0    502  2.8  MoverBuffer
+0     18   1    0    176  2.3  borrar
+0     64   2    0    561  5.3  restriccion
+0     58   2    0    453  3.8  comparador
+0     56   2    0    453  3.8  comparador2
+0    184   6    0    762  6.1  main
+0     14   0    0             @const686
+0     46   1    2             @PSTRINGC_654
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               14
+    Statements              212
+    Comments                237
+    Volume (V)              11683
+    Difficulty (D)          58.8
+    Effort to implement (E) 686458
+    Time to implement (T)   10 hours, 36 minutes
+    Est Delivered Bugs (B)  3
+    Cyclomatic Complexity   42
+    Maintainability (MI)    96
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-000AC   166  0  
+000AE-07FFE  1428  31166  
+
+
+

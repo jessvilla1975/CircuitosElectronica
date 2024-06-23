@@ -1,0 +1,79 @@
+[PROJECT]
+Target=logo univalle.hex
+Processor_Text=PIC18F4550
+CCSVersion=5.059
+Compiler=PCH
+[Target Data]
+FileList=logo univalle.c
+[logo univalle.c]
+Type=4
+[mru-list]
+1=logo univalle.c
+
+[defines]
+buildcount=30
+
+[ProjectLog]
+Days=4
+D1=29-08-2019
+D1_L=4
+D1_L1=[65280]Stopped Editing.
+D1_L2=[65660]Started Editing.
+D1_L3=[66551]Stopped Editing.
+TotalEdit=91
+TotalDebug=0
+D1_E=21
+D1_D=0
+D1_L4=[70992]Project Closed.
+D2=30-08-2019
+D2_L=26
+D2_L1=[37493]Project Opened.
+D2_L2=[38358]Started Editing.
+D2_L3=[38674]Stopped Editing.
+D2_L4=[38963]Started Editing.
+D2_L5=[39057]Stopped Editing.
+D2_E=42
+D2_D=0
+D2_L6=[39057]Project Closed.
+D2_L7=[41284]Project Opened.
+D2_L8=[41752]Started Editing.
+D2_L9=[42713]Stopped Editing.
+D2_L10=[43263]Project Closed.
+D2_L11=[43294]Project Opened.
+D2_L12=[43631]Project Closed.
+D2_L13=[48466]Project Opened.
+D2_L14=[49034]Started Editing.
+D2_L15=[49828]Stopped Editing.
+D2_L16=[50010]Started Editing.
+D2_L17=[50455]Stopped Editing.
+D2_L18=[50455]Project Closed.
+D2_L19=[53460]Project Opened.
+D2_L20=[53560]Started Editing.
+D2_L21=[53952]Stopped Editing.
+D2_L22=[54294]Started Editing.
+D2_L23=[55203]Stopped Editing.
+D2_L24=[55307]Started Editing.
+D2_L25=[55613]Stopped Editing.
+D2_L26=[56484]Project Closed.
+D3=31-08-2019
+D3_L=1
+D3_L1=[41757]Project Opened.
+D4=01-09-2019
+D4_L=4
+D4_L1=[62305]Project Opened.
+D4_L2=[62515]Started Editing.
+D4_L3=[64174]Stopped Editing.
+D4_E=28
+D4_D=0
+D4_L4=[64174]Project Closed.
+
+[fileformats]
+forcecoff=0
+
+[Opened Files]
+1=logo univalle.c
+t1=81
+Count=1
+[Units]
+Count=1
+1=logo univalle (main)

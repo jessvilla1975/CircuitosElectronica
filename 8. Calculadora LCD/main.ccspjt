@@ -1,0 +1,27 @@
+[PROJECT]
+Target=main.hex
+Processor_Text=PIC18F4550
+CCSVersion=5.009
+Compiler=PCH
+[Target Data]
+FileList=main.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\;C:\Users\PRADOCASTILLO\Desktop\Clase120819\El  Modulo LCD (Buga)\P5\P5_1\;C:\Users\Carlos Valencia\Desktop\Calculadora\
+[main.c]
+Type=4
+[mru-list]
+1=main.c
+[Opened Files]
+1=main.c
+2=
+3=
+[Units]
+Count=1
+1=main (main)
+
+[ProjectLog]
+Days=1
+D1=23-02-2020
+D1_L=2
+D1_L1=[43219]Project Opened.
+D1_L2=[43821]Project Closed.

@@ -1,0 +1,47 @@
+ÀÄReloj LCD
+   ÃÄmain  0/184  Ram=0
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÃÄlcd_init  0/138  Ram=2
+   ³  ³  ÃÄ@delay_ms1  0/40  Ram=1
+   ³  ³  ÃÄlcd_send_nibble  0/24  Ram=1
+   ³  ³  ÃÄ@delay_ms1  0/40  Ram=1
+   ³  ³  ÃÄlcd_send_nibble  0/24  Ram=1
+   ³  ³  ÃÄ@const634  0/20  Ram=0
+   ³  ³  ÀÄlcd_send_byte  0/54  Ram=3
+   ³  ³     ÃÄlcd_read_byte  0/54  Ram=3
+   ³  ³     ÃÄlcd_send_nibble  0/24  Ram=1
+   ³  ³     ÀÄlcd_send_nibble  0/24  Ram=1
+   ³  ÃÄ@PSTRINGC_654  0/46  Ram=2
+   ³  ³  ÀÄlcd_putc  0/66  Ram=1
+   ³  ³     ÃÄlcd_send_byte  0/54  Ram=3
+   ³  ³     ³  ÀÄ*
+   ³  ³     ÃÄ@delay_ms1  0/40  Ram=1
+   ³  ³     ÃÄlcd_gotoxy  0/34  Ram=4
+   ³  ³     ³  ÀÄlcd_send_byte  0/54  Ram=3
+   ³  ³     ³     ÀÄ*
+   ³  ³     ÃÄlcd_send_byte  0/54  Ram=3
+   ³  ³     ³  ÀÄ*
+   ³  ³     ÀÄlcd_send_byte  0/54  Ram=3
+   ³  ³        ÀÄ*
+   ³  ÃÄkbd_getc  0/226  Ram=1
+   ³  ÃÄ@delay_ms1  0/40  Ram=1
+   ³  ÃÄrestriccion  0/64  Ram=0
+   ³  ÃÄborrar  0/18  Ram=0
+   ³  ÃÄMoverBuffer  0/160  Ram=0
+   ³  ³  ÃÄ@delay_ms1  0/40  Ram=1
+   ³  ³  ÃÄ@delay_ms1  0/40  Ram=1
+   ³  ³  ÃÄ@delay_ms1  0/40  Ram=1
+   ³  ³  ÃÄ@delay_ms1  0/40  Ram=1
+   ³  ³  ÃÄ@delay_ms1  0/40  Ram=1
+   ³  ³  ÃÄlcd_gotoxy  0/34  Ram=4
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÀÄ@PSTRINGR_654  0/36  Ram=2
+   ³  ³     ÀÄlcd_putc  0/66  Ram=1
+   ³  ³        ÀÄ*
+   ³  ÃÄcomparador  0/58  Ram=0
+   ³  ÀÄcomparador2  0/56  Ram=0
+   ÀÄTimer0_int  0/136  Ram=0
+      ÃÄlcd_gotoxy  0/34  Ram=4
+      ³  ÀÄ*
+      ÀÄ@PSTRINGR_654  0/36  Ram=2
+         ÀÄ*

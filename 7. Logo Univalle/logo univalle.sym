@@ -1,0 +1,95 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004-005 @sprintf_string
+006     lcd_init.i
+006     @PSTRINGC_654.@SCRATCH1
+007     lcd_init.@SCRATCH1
+007     @PSTRINGC_654.@SCRATCH2
+008     lcd_putc.c
+009     lcd_gotoxy.x
+009     @delay_ms1.P1
+00A     lcd_gotoxy.y
+00B     lcd_gotoxy.address
+00C     lcd_gotoxy.@SCRATCH1
+00D     lcd_send_byte.address
+00E     lcd_send_byte.n
+00F     lcd_read_byte.low
+00F     lcd_send_byte.@SCRATCH1
+010     lcd_read_byte.high
+010     lcd_send_nibble.n
+011     lcd_read_byte.@SCRATCH1
+F83     PSP_DATA
+F83     lcd
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P3
+FE9-FEA @READ_PACKED_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000004  LCD_INIT_STRING.call
+000014  LCD_INIT_STRING.data
+000018  @const663.call
+000024  @const668.call
+00002E  @delay_ms1
+000056  lcd_send_nibble
+00006E  lcd_read_byte
+0000A6  lcd_send_byte
+0000DC  lcd_init
+00012A  lcd_gotoxy
+00014C  lcd_putc
+000190  @PSTRINGC_654
+0001B0  @cinit1
+0001B0  main
+0001C4  @cinit2
+
+Project Directory:
+    D:\logo univalle\
+
+Project Files:
+    logo univalle.c                                         [01-sept.-19 17:46  CRC=76F62C75]
+    C:\Program Files (x86)\PICC\Devices\18F4550.H           [18-may.-16 15:14  CRC=7C29061C]
+    Mi_LCD.c                                                [04-may.-11 22:09  CRC=3C7105E5]
+
+Source signature=6C013E5B
+Program memory checksum=0000
+Program memory CRC=0000
+Hex file CRC=915B
+
+Units:
+    logo univalle (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   logo univalle.xsym
+    Errors:      logo univalle.err
+    Ext Symbols: logo univalle.esym
+    INHX32:      logo univalle.hex
+    Symbols:     logo univalle.sym
+    List:        logo univalle.lst
+    Debug/COFF:  logo univalle.cof
+    Project:     logo univalle.ccspjt
+    Call Tree:   logo univalle.tre
+    Statistics:  logo univalle.STA

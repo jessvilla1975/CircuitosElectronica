@@ -1,0 +1,36 @@
+/*
+Este Programa
+
+*/
+#include <18F4550.H> // Selecciona el Microcontrolador
+#use delay(clock= 4Mhz)
+#include "lcd.c"
+#include "MY_KBD.c"
+#fuses xt,nowdt,noprotect,put
+
+#use fast_io(b)
+#use fast_io(d)
+#byte PORTB = 0xF81
+#byte PORTD = 0xF83
+
+void main(void)
+{  int8 LaTecla;
+   set_tris_b(0xf0);
+   set_tris_d(0x00);
+   lcd_init();
+   lcd_gotoxy(6,1);
+   lcd_putc("Curso4550\n");
+   printf(lcd_putc,"  Univalle - Buga");
+   delay_ms(2000);
+   lcd_putc("\f");
+   while(1)
+   {
+   LaTecla = kbd_getc();
+   delay_ms(180);
+   //lcd_gotoxy(1,1);
+   if (LaTecla != 0)
+      printf(lcd_putc,"%c",LaTecla);
+      printf(lcd_putc,"  Univalle - Buga");
+   
+   }
+}

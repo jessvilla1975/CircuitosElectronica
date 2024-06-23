@@ -1,0 +1,98 @@
+#include <18F4550.H>
+#USE DELAY(CLOCK=4000000)
+
+#fuses XT, CPUDIV1
+#fuses PUT
+#use fast_io(b)
+#use fast_io(d)
+#use fast_io(e)
+#use fast_io(c)
+
+#byte PORTB =0XF81
+#byte PORTC =0XF82
+#byte PORTD =0XF83
+#byte PORTE =0XF84
+#include "Mi_LCD.c"
+int  i = 19;
+char nombre1[19] = "Microprocesadores-I";
+char nombre2[19] = "   Andres Torres   ";
+
+
+//========================== 
+
+void imprimir_nombre(int x){
+    lcd_gotoxy(x,1);
+    lcd_putc(nombre1[18]);
+    
+    lcd_gotoxy(x-1,1);
+    lcd_putc(nombre1[17]);
+    
+    lcd_gotoxy(x-2,1);
+    lcd_putc(nombre1[16]);
+    
+    lcd_gotoxy(x-3,1);
+    lcd_putc(nombre1[15]);
+    
+    lcd_gotoxy(x-4,1);
+    lcd_putc(nombre1[14]);
+    
+    lcd_gotoxy(x-5,1);
+    lcd_putc(nombre1[13]);
+    
+    lcd_gotoxy(x-6,1);
+    lcd_putc(nombre1[12]);
+    
+    lcd_gotoxy(x-7,1);
+    lcd_putc(nombre1[11]);
+    
+    lcd_gotoxy(x-8,1);
+    lcd_putc(nombre1[10]);
+    
+    lcd_gotoxy(x-9,1);
+    lcd_putc(nombre1[9]);
+    
+    lcd_gotoxy(x-10,1);
+    lcd_putc(nombre1[8]);
+    
+    lcd_gotoxy(x-11,1);
+    lcd_putc(nombre1[7]);
+    
+    lcd_gotoxy(x-12,1);
+    lcd_putc(nombre1[6]);
+    
+    lcd_gotoxy(x-13,1);
+    lcd_putc(nombre1[5]);
+    
+    lcd_gotoxy(x-14,1);
+    lcd_putc(nombre1[4]);
+    
+    lcd_gotoxy(x-15,1);
+    lcd_putc(nombre1[3]);
+    
+    lcd_gotoxy(x-16,1);
+    lcd_putc(nombre1[2]);
+    
+    lcd_gotoxy(x-17,1);
+    lcd_putc(nombre1[1]);
+    
+    lcd_gotoxy(x-18,1);
+    lcd_putc(nombre1[0]);
+
+}
+
+void main() {
+    set_tris_d(0x00);
+    set_tris_b(0xF0);
+    lcd_init();
+
+    
+    
+    while(true){
+        i++;
+        imprimir_nombre1(i);
+        i = (i == 40) ? 0 : i;
+        delay_ms(200);
+        lcd_putc("\f");
+    }
+}
+

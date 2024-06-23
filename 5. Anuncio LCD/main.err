@@ -1,0 +1,6 @@
+>>> Warning 230 "main.c" Line 17(41,42): String truncated
+>>> Warning 230 "main.c" Line 18(31,32): String truncated
+>>> Warning 202 "main.c" Line 18(6,13): Variable never used:   nombre2
+      Memory usage:   ROM=3%      RAM=1% - 2%
+      0 Errors,  3 Warnings.
+Build Successful.

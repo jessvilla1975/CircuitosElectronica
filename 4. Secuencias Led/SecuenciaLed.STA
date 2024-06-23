@@ -1,0 +1,45 @@
+
+ROM used:   242/32768 (1%)
+            242/32768 (1%) including unused fragments
+
+            0.3 Average locations per line
+            5.4 Average locations per statement
+
+RAM used:   4/2048 (0%) at main() level
+            7/2048 (0%) worst case
+
+Stack used: 1 worst case (1 in main + 0 for interrupts)
+Stack size: 31
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   61    45 100  SecuenciaLed.c
+  837     0   0  ..\..\..\..\..\..\Program Files (x86)\PICC\Devices\18F4550.h
+----- -----
+  898    45 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     40   8    1             @delay_ms1
+0    198  41    0  1197  4.9  main
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               1
+    Statements              45
+    Comments                168
+    Volume (V)              1203
+    Difficulty (D)          4.8
+    Effort to implement (E) 5812
+    Time to implement (T)   5 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   2
+    Maintainability (MI)    119
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-07FFE   238  32526  
+
+
+

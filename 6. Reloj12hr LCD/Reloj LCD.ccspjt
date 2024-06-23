@@ -1,0 +1,96 @@
+[PROJECT]
+Target=Reloj LCD.hex
+Processor_Text=PIC18F4550
+CCSVersion=5.059
+Compiler=PCH
+[Target Data]
+FileList=Reloj LCD.c
+[Reloj LCD.c]
+Type=4
+[mru-list]
+1=Reloj LCD.c
+
+[defines]
+buildcount=57
+
+[ProjectLog]
+Days=7
+D1=20-08-2019
+D1_L=7
+D1_L1=[2629]Project Closed.
+D1_L2=[72360]Project Opened.
+D1_L3=[72562]Started Editing.
+D1_L4=[73797]Stopped Editing.
+D1_L5=[73856]Started Editing.
+D1_L6=[74106]Stopped Editing.
+TotalEdit=103
+TotalDebug=0
+D1_E=20
+D1_D=0
+D1_L7=[74106]Project Closed.
+D2=21-08-2019
+D2_L=4
+D2_L1=[39143]Project Opened.
+D2_L2=[42112]Started Editing.
+D2_L3=[42412]Stopped Editing.
+D2_E=1
+D2_D=0
+D2_L4=[42690]Project Closed.
+D3=24-08-2019
+D3_L=2
+D3_L1=[47109]Project Opened.
+D3_L2=[47260]Project Closed.
+D4=25-08-2019
+D4_L=14
+D4_L1=[65659]Project Opened.
+D4_L2=[65693]Started Editing.
+D4_L3=[66225]Stopped Editing.
+D4_L4=[66268]Started Editing.
+D4_L5=[66722]Stopped Editing.
+D4_L6=[67455]Started Editing.
+D4_L7=[68938]Stopped Editing.
+D4_L8=[69032]Started Editing.
+D4_L9=[69398]Stopped Editing.
+D4_L10=[69423]Started Editing.
+D4_L11=[70685]Stopped Editing.
+D4_L12=[70810]Started Editing.
+D4_L13=[72271]Stopped Editing.
+D4_E=68
+D4_D=0
+D4_L14=[72271]Project Closed.
+D5=26-08-2019
+D5_L=6
+D5_L1=[69240]Project Opened.
+D5_L2=[69266]Started Editing.
+D5_L3=[69760]Stopped Editing.
+D5_L4=[69798]Started Editing.
+D5_L5=[70663]Stopped Editing.
+D5_E=13
+D5_D=0
+D5_L6=[73514]Project Closed.
+D6=29-08-2019
+D6_L=2
+D6_L1=[55175]Project Opened.
+D6_L2=[55298]Project Closed.
+D7=02-09-2019
+D7_L=4
+D7_L1=[33621]Project Opened.
+D7_L2=[33732]Started Editing.
+D7_L3=[34054]Stopped Editing.
+D7_E=1
+D7_D=0
+D7_L4=[34282]Project Closed.
+
+[Opened Files]
+1=Reloj LCD.c
+t1=12
+Count=1
+2=..\Reloj 12\reloj 12.c
+t2=124
+3=..\Reloj 12\reloj 12.c
+t3=18
+4=D:\P5_2 - copia\main.c
+t4=43
+[Units]
+Count=1
+1=Reloj LCD (main)

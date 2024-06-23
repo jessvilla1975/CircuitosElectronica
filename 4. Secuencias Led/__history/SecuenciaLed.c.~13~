@@ -1,0 +1,18 @@
+#include <18F4550.h>
+//| tx cristales <= 4Mhz; ht cristales > 4Mhz;|,  nowdt -> no usa el recurso de reset al estar en un bucle, noproject-> no protejer codigo
+#fuses xt,nowdt,noprotect,put 
+#use delay(clock = 4Mhz)
+#use fast_io(b)
+#use fast_io(d)
+
+void main(){
+   set_tris_b(0x00);  // define el puerto b como salida
+   set_tris_d(0x00); // define le puerto d como salida
+   output_d(0xFF);
+   output_b(0xFF);
+   int8 numero = 127;
+   
+   output_b(numero);
+   
+}
+

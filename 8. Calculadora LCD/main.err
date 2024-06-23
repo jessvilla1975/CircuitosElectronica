@@ -1,0 +1,4 @@
+>>> Warning 202 "main.c" Line 28(9,16): Variable never used:   LaTecla
+      Memory usage:   ROM=14%      RAM=1% - 2%
+      0 Errors,  1 Warnings.
+Build Successful.

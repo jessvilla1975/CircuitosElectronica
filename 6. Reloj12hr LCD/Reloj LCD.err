@@ -1,0 +1,11 @@
+>>> Warning 229 "Reloj LCD.c" Line 75(1,1): Subscript out of range
+>>> Warning 203 "Reloj LCD.c" Line 173(1,1): Condition always TRUE
+>>> Warning 216 "Reloj LCD.c" Line 208(1,2): Interrupts disabled during call to prevent re-entrancy:  (@delay_ms1)
+>>> Warning 216 "Reloj LCD.c" Line 208(1,2): Interrupts disabled during call to prevent re-entrancy:  (lcd_send_nibble)
+>>> Warning 216 "Reloj LCD.c" Line 208(1,2): Interrupts disabled during call to prevent re-entrancy:  (lcd_send_byte)
+>>> Warning 216 "Reloj LCD.c" Line 208(1,2): Interrupts disabled during call to prevent re-entrancy:  (lcd_putc)
+>>> Warning 216 "Reloj LCD.c" Line 208(1,2): Interrupts disabled during call to prevent re-entrancy:  (lcd_gotoxy)
+>>> Warning 216 "Reloj LCD.c" Line 208(1,2): Interrupts disabled during call to prevent re-entrancy:  (@PSTRINGR_654)
+      Memory usage:   ROM=5%      RAM=2% - 3%
+      0 Errors,  8 Warnings.
+Build Successful.

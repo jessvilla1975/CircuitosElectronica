@@ -1,0 +1,93 @@
+#include <18F4550.H>
+#USE DELAY(CLOCK=4000000)
+
+#fuses XT, CPUDIV1
+#fuses PUT
+#use fast_io(b)
+#use fast_io(d)
+#use fast_io(e)
+#use fast_io(c)
+
+#byte PORTB =0XF81
+#byte PORTC =0XF82
+#byte PORTD =0XF83
+#byte PORTE =0XF84
+#include "Mi_LCD.c"
+int  i = 6;
+char nombre[19] = "Microprocesadores I";
+
+
+//========================== 
+
+void imprimir_nombre(int x){
+    lcd_gotoxy(x,1);
+    lcd_putc(nombre[18]);
+    
+    lcd_gotoxy(x-1,1);
+    lcd_putc(nombre[17]);
+    
+    lcd_gotoxy(x-2,1);
+    lcd_putc(nombre[16]);
+    
+    lcd_gotoxy(x-3,1);
+    lcd_putc(nombre[15]);
+    
+    lcd_gotoxy(x-4,1);
+    lcd_putc(nombre[14]);
+    
+    lcd_gotoxy(x-5,1);
+    lcd_putc(nombre[13]);
+    
+    lcd_gotoxy(x-6,1);
+    lcd_putc(nombre[12]);
+    
+    lcd_gotoxy(x-7,1);
+    lcd_putc(nombre[11]);
+    
+    lcd_gotoxy(x-8,1);
+    lcd_putc(nombre[10]);
+    
+    lcd_gotoxy(x-9,1);
+    lcd_putc(nombre[9]);
+    
+    lcd_gotoxy(x-10,1);
+    lcd_putc(nombre[8]);
+    
+    lcd_gotoxy(x-11,1);
+    lcd_putc(nombre[7]);
+    
+    lcd_gotoxy(x,1);
+    lcd_putc(nombre[6]);
+    
+    lcd_gotoxy(x-1,1);
+    lcd_putc(nombre[5]);
+    
+    lcd_gotoxy(x-2,1);
+    lcd_putc(nombre[4]);
+    
+    lcd_gotoxy(x-3,1);
+    lcd_putc(nombre[3]);
+    
+    lcd_gotoxy(x-4,1);
+    lcd_putc(nombre[2]);
+    
+    lcd_gotoxy(x-5,1);
+    lcd_putc(nombre[1]);
+}
+
+void main() {
+    set_tris_d(0x00);
+    set_tris_b(0xF0);
+    lcd_init();
+
+    
+    
+    while(true){
+        i++;
+        imprimir_nombre(i);
+        i = (i == 22) ? 0 : i;
+        delay_ms(200);
+        lcd_putc("\f");
+    }
+}
+

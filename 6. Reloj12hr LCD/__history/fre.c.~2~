@@ -1,0 +1,154 @@
+/* PROGRAMA ********************************************************************
+                            Nombre: Ejemplo 1
+                      Autor: Ramiro Victoria Alvarez
+                             (C) Julio de 2016
+Descripción: Este es un programa de introducción al uso del Entrenador RVUSB4550.
+Introduce a las aplicaciones de los displays de 7 segmentos y el teclado matricial
+de 4x4. Tiene por objeto presentar en la pantalla de 7 segmentosla la información 
+númerica entrada desde el teclado. Al iniciar la ejecución visualiza los datos
+preexistentes en el Buffer.
+*******************************************************************************/
+#include <18F4550.H> // Selecciona el Microcontrolador
+#fuses xt,nowdt,noprotect,put
+#use delay(clock= 4Mhz)
+#include "Mi_LCD.c"
+#include "MY_KBD.c"
+#use fast_io(b)
+#use fast_io(d)
+#use fast_io(c)
+#byte PORTB = 0xF81
+#byte PORTC = 0xF82
+#byte PORTD = 0xF83
+#byte PORTE = 0xF84
+
+
+
+// Variables Globales
+int8 Display[16] = {192,249,162,176,153,148,132,241,128,144,129,140,198,168,134,135};
+//int8 Display[10] = {192,249,164,176,153,146,130,248,128,144};
+int8 Buffer[8] = {0, 1, 2, 3, 4, 5, 6, 7};
+int8 MatrizTeclado[16] = {13,12,11,10,14,9,6,3,0,8,5,2,15,7,4,1};
+int8 CodigoTecla = 0; // Codigo de posicion de la Tecla (0x00 a 0x0F) 
+int8 LaTecla;  // Contiene el codigo de la ultima tecla pulsada
+int8 Teclado;  // Contiene el ultimo estado del teclado
+
+/* FUNCION *********************************************************************
+                                Nombre: LeeTeclado()
+                           Autor: Ramiro Victoria Alvarez
+                                (C) Julio de 2016
+Descripción: Al teclado se le asigna dos conceptos: Código de posición y Tecla.
+El código de posición es un valor de 0 a 15 (0x00 a 0x0F en hexadecial) asignado 
+según el cableado de las filas y las columnas del teclado y por la secuencia como 
+el programa explora el estado (Pulsada / No pulsada) de cada una de sus teclas.
+
+                                Y3    Y2    Y1    Y0    Columnas conectadas al decodificador 74138.
+                                 |     |     |     |    en sus salidas Y3, Y2,Y1 y Y0.
+                              +--+--+--+--+--+--+--+--+
+                        RB4<--|   0F|   0B|   07|   03| Código de Posición.
+  Filas conectadas en         | <1> | <2> | <3> | <A> | Tecla.
+  el Nibble alto del          +-----+-----+-----+-----+
+  Puerto B              RB5<--|   0E|   0A|   06|   02|
+                              | <4> | <5> | <6> | <B> |
+                              +-----+-----+-----+-----+
+                        RB6<--|   0D|   09|   05|   01|
+                              | <7> | <8> | <9> | <C> |
+                              +-----+-----+-----+-----+
+                        RB7<--|   0C|   08|   04|   00|
+                              | <*> | <0> | <#> | <D> |
+                              +-----+-----+-----+-----+
+
+Esta función deja en el Registro LaTecla el código de posición de la última tecla
+pulsada. Además pone en 1 el bit #7 del registro LaTecla, indicando que éste código
+pertenece a la última tecla pulsada. Ejemplo: Se pulsó la Tecla <8>. La función
+deja en el Registro LaTecla su correspondiente código de posición 0x09, modificado
+temporalmente como 0x89 cuando va con la marca de última tecla pulsada.
+          El bit 7 puesto en 1   <------+
+          es la Marca de última         |      Registro LaTecla
+          Tecla Pulsada               +-+-+---+---+---+---+---+---+---+
+                                      | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | En binario
+                                      +---+---+---+---+---+---+---+---+
+                                      |       8       |       9       | en hexadecimal
+                                      
+*******************************************************************************/
+
+void LeeTeclado()
+{ int8 i;
+  Teclado = (input_b());
+  for (i=7;i>3;i--)
+      {  if (!bit_test(Teclado,i))
+            {  LaTecla = CodigoTecla;
+               bit_set(LaTecla,7); // Pone la Marca           
+            }
+         CodigoTecla++;
+      }
+}
+
+/* FUNCION *********************************************************************
+                              Nombre: Barrido()
+                        Autor: Ramiro Victoria Alvarez
+                              (C) Julio de 2016
+Descrición: Presenta de modo multiplexado en la pantalla de 7 segmentos los datos
+almacenados previamente en el arreglo de 8 localidades de memoria llamado Buffer[]. 
+El contenido de Buffer[0] se visualiza en el display del extremo derecho, mientras 
+que el contenido de Buffer[7] se visualiza en el display del extremo izquiero.
+La visualización de los contenidos del arreglo se hace por una sola vez por cada 
+llamado a la función Barrido(). Se debe llamar repetidamente esta funcion para
+mantener encendidos los display debido a su manejo dinamico (multiplexado).
+*******************************************************************************/
+  
+void Barrido()
+{  int8 i;
+   CodigoTecla=0;
+   output_d(0xFF);
+   output_b(0x00);
+    for (i=0;i<8;i++)
+        {   output_b(i);
+            output_d(Display[Buffer[i]]);
+            delay_us(300);
+            LeeTeclado();
+            output_d(0xFF);
+       
+        }
+}
+
+/* FUNCION *********************************************************************
+                               Nombre: MoverBuffer()
+                          Autor: Ramiro Victoria Alvarez
+                                (C) Julio de 2016
+Descrición: Esta función desplaza el contenido del Buffer[] para liberar el espacio
+Buffer[0] y alojar allí el contenido del registro LaTecla (Ultima tecla pulsada).
+*******************************************************************************/
+
+void MoverBuffer()
+{  signed int8 i;
+   for (i=6;i>-1;i--)
+      {  Buffer[i+1]= Buffer[i];
+         //delay_ms(30); // Esta instruccion no tiene razon de ser
+      }
+   bit_clear(LaTecla,7);  // Quita la Marca
+   Buffer[0] = MatrizTeclado[LaTecla];
+}
+//*****************************************************************************
+
+void main()
+{  set_tris_b(0xF0);
+   set_tris_d(0x00);
+   set_tris_e(0x00);
+   set_tris_c(0x00);
+   LaTecla = kbd_getc();
+
+   while(1)
+      {  
+          int8 i;
+          for(i=0;i<40;i++)
+          {
+            Barrido();  // Mantiene prendida la pantalla de 7 segmentos
+          }
+          
+          if (LaTecla != 0)
+               switch(LaTecla)
+               {  case 65: MoverBuffer();
+               }
+            
+      }
+}

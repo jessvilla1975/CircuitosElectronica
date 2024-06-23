@@ -1,0 +1,136 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     @INTERRUPT_AREA
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016     @INTERRUPT_AREA
+017     @INTERRUPT_AREA
+018     @INTERRUPT_AREA
+019     @INTERRUPT_AREA
+01A-01B part1
+01C-023 buffer
+024     LaTecla
+025-026 @sprintf_string
+027     kbd_getc.tecla
+027     lcd_init.i
+027     @PSTRINGC_654.@SCRATCH1
+028     lcd_init.@SCRATCH1
+028     @PSTRINGC_654.@SCRATCH2
+033     @PSTRINGR_654.@SCRATCH1
+034     @PSTRINGR_654.@SCRATCH2
+035     lcd_putc.c
+036     lcd_gotoxy.x
+036     @delay_ms1.P1
+037     lcd_gotoxy.y
+038     lcd_gotoxy.address
+039     lcd_gotoxy.@SCRATCH1
+03A     lcd_send_byte.address
+03B     lcd_send_byte.n
+03C     lcd_read_byte.low
+03C     lcd_send_byte.@SCRATCH1
+03D     lcd_read_byte.high
+03D     lcd_send_nibble.n
+03E     lcd_read_byte.@SCRATCH1
+F81     PORTB
+F82     PORTC
+F83     PORTD
+F83     lcd
+F83     PSP_DATA
+F84     PORTE
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PACKED_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P3
+FE9-FEA @WRITE_PROGRAM_MEMORY.P4
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+0000AE  LCD_INIT_STRING.call
+0000BE  LCD_INIT_STRING.data
+0000C2  lcd_read_byte
+0000F8  lcd_send_nibble
+000110  lcd_send_byte
+000146  lcd_gotoxy
+000168  @delay_ms1
+000190  lcd_putc
+0001D2  @PSTRINGR_654
+0001F6  Timer0_int
+00027E  @const686.call
+00028C  lcd_init
+000316  @PSTRINGC_654
+000344  kbd_getc
+000426  restriccion
+000466  borrar
+000478  MoverBuffer
+000518  comparador
+000552  comparador2
+00058A  @cinit1
+00058A  main
+0005A0  @cinit2
+0133  sale
+
+Project Directory:
+    C:\Users\Acer\Desktop\Final\Reloj12hr LCD\
+
+Project Files:
+    Reloj LCD.c                                             [29-ago.-19 15:16  CRC=7BA048FF]
+    ..\..\..\..\..\Program Files (x86)\PICC\Devices\18F4550.H [18-may.-16 15:14  CRC=7C29061C]
+    Mi_LCD.c                                                [04-may.-11 22:09  CRC=3C7105E5]
+    ..\..\..\..\..\Program Files (x86)\PICC\Drivers\Mi_Teclado.c [17-may.-18 12:38  CRC=6EA1EFE7]
+
+Source signature=117E34CE
+Program memory checksum=0000
+Program memory CRC=0000
+Hex file CRC=B4B1
+
+Units:
+    Reloj LCD (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   Reloj LCD.xsym
+    Errors:      Reloj LCD.err
+    Ext Symbols: Reloj LCD.esym
+    INHX32:      Reloj LCD.hex
+    Symbols:     Reloj LCD.sym
+    List:        Reloj LCD.lst
+    Debug/COFF:  Reloj LCD.cof
+    Project:     Reloj LCD.ccspjt
+    Call Tree:   Reloj LCD.tre
+    Statistics:  Reloj LCD.STA
