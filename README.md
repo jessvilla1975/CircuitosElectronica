@@ -1,4 +1,4 @@
-# Serie de Programas de Circuitos con PIC18F4550
+# Serie de Programas de Circuitos con PIC18F4550 Micros
 
 Este proyecto muestra cómo controlar displays de 7 segmentos utilizando un microcontrolador PIC18F4550. El código está escrito en C y configurado para funcionar con una frecuencia de reloj de 4MHz.
 
